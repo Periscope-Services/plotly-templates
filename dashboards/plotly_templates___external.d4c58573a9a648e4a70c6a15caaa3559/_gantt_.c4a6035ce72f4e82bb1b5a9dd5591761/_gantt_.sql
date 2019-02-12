@@ -3,7 +3,7 @@ select
   , min(created_at) as start
   , max(created_at) as finish
 from
-  gameplays
+  periscope_views.gameplays
 group by
   1
 order by

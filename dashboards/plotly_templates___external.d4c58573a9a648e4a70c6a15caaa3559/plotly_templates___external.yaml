@@ -1,3 +1,9 @@
+configured_filters:
+  visible_filters:
+  - Aggregation:
+      default:
+      - Weekly
+  - Date Range: {}
 dashboard_preferences:
   settings:
     owner: rfriedland@periscopedata.com

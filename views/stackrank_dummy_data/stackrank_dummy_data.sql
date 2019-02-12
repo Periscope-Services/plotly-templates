@@ -1,0 +1,1 @@
+select [current_timestamp:date] as current_date

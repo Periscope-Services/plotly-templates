@@ -4,5 +4,5 @@ select
   , latitude
   , longitude
 from
-  users
+  periscope_views.users
 limit 50000

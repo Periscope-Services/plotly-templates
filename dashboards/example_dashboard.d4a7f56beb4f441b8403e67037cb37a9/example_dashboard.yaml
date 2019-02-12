@@ -1,0 +1,5 @@
+dashboard_preferences:
+  settings:
+    owner: rfriedland+plotlytemplates@periscopedata.com
+disable_filters: false
+display_name: Example Dashboard

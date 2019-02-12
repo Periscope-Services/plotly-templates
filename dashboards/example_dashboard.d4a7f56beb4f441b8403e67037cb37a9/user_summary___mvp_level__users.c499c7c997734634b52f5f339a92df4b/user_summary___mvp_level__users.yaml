@@ -1,0 +1,14 @@
+advanced:
+  description: "Sometimes, a simple table is the best way to display information.
+    Raw tables are a great way to \"tie up \" visual based information. \n\nThis table
+    can be filtered by \"MVP_Level\"."
+chart_type: Table
+database_name: example_database
+display_name: 'User Summary: [MVP_Level] Users'
+encrypted_definition: M6sg9bjg/+HKIy19v4t04QZVMm7MoXH95YKmGxU1oLxrefP81uM65I1IBA2We3TQf+HImhZ29NgCjKmV1nNnQZetdoIWaoe8w4A+7N62/gr5f2FjX29P1Z4RaXE8H8B7B5Lr7zKthEOod+tDcgQ2VED0QjcNi35X4z+bCA76nKSNAmknhMpBaV+VW7KnP4W5KlLP6XWj9pm8HFUJQA3i4scpdy78+OSdCCLRHfFF+DGOhSAIKn4TR8Cw0ndMl2B9wDGTEBQ7BuVUcW0x0La5VzNPxJFfJ8orqIGN/ULudqxTKbBHt2Z7h/EIMYiEX7cMSBToZHhQwyMAyFdrdkCe01rs1GjHy4mBuA9X1nizKETianBX2kQojNixOsT5RejhSj2svzQ5o1sXAY8f+9PyjSQEBdxI2IzY1C8T3X98SKTitEjfHxIVwthOAcnGgXj6jwFZoF43OsoUxuJ9gw5Oq/Ah4Kh6NxozHaLB6wOIBeOT0OBZ3Ub9ltXuCD2FF8eVOSx0HNeYuYHsAg3HgeYV2LbZ6NbHAD/6O+keBIW0UvRIK+Q33ynhW4xEA27ErR4mQ/yhXR5nFb41ZjjaFwzKknHxiDw0ljz0T1wfc2Ojh9gb2pOT551w0c9HKyrQ7Yst7bvdoperaIj2Jvb6ZS+o+9W/V3AB7tiK6f6vXyBpzZn/Go3u0xR9DrWrxxAQaesK
+position:
+  left: 0
+  top: 90
+size:
+  height: 13
+  width: 44

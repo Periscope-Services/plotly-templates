@@ -1,0 +1,16 @@
+advanced:
+  description: |-
+    The box plot (a.k.a. box and whisker diagram) is a standardized way of displaying the distribution of data based on the five number summary: minimum, first quartile, median, third quartile, and maximum.
+
+    This chart can be filtered by the "MVP_Level filter".
+chart_type: Code Image
+code_language: R3.2
+database_name: example_database
+display_name: 'Active User Lifetime Boxplot: [MVP_Level] Users'
+encrypted_definition: YkuTqYySktvQB+iZ55qh+WK+ANpS81W2gmHvQcJgDZqfJoTlzXti54/kG1ivfMKLEitlnbY9abUIWqKnZtqMRmtnxKFppRY73HHz/0Kq9P7H7MRE/lb8PzLjbmZvCHgWIwKxyB+tSTkf9DXZyy45/389wXikDT1WaDZ1Zj3UfB69muqruktoyESL8TestMEZYSphfCOiAQ+jOyWxNhntH005ZBWvC+0TAxpOO6VOjY40BuSZPQOhvIPi2Nu636cHe2cN5UZkeGPOw7Axsd0rmVaefJYyEliaDNfZJaYzjMeSkujIzlXSpYHkFxUq1kKr3OeEelZ61nYTbcJiRngECQ==
+position:
+  left: 30
+  top: 29
+size:
+  height: 11
+  width: 14

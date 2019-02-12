@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    This chart displays a comparison of revenue per user by platform.
+
+    This chart can be filtered by MVP user Level
+chart_type: Bar
+database_name: example_database
+display_name: Average Revenue Per [MVP_Level|Paying] User
+encrypted_definition: 7pqK1sFeSHk35TJVHECOLowqyUoA7nq4+NQOoKeOaqAzf+7Li/1iNU+HU+S3XOx4I2URG8AqIfvff3bTh5g9kAux7JcuLgyQQVQE4h1+8qLv2DJM671IPD0LMXETL+eMn3ifZzUgkN8JO6Dn7dJk7ogbiQp4EELfF+FTOmyuZrSQFPAdq3fEWObHk5PKgreB3vAqR1zgQ/mx3uGnKaGcxGy1dxQYr7TtKAhxdO1NgQfTVb0e6VvewW2aUa+znrjyJPNY3b13ktK7uW8ZDWPs70TCMVP1OkcVvD+pGd9jqhUO5zBviCafJEeLCJXkknAC8wFxxoIQaCrSK+PCw6cC3pex1KzFOIUIMlhr93FglkW7rmTbkzq7hIbM8Prjqd8+13XbJku33Ns4FZUqywdbHGvlY6ioArLCB1WQYE/suJIN604rlIxFpgTk8ZZJXbZWXKAE0EiUdpbEDKjkTWEy3dtl0Zge94Nbdv9usKjZSDQa6zqwreIhXjMtf1n48POAqGbQniJ43leMVbHJl5MyyDzIeSC7gvGnfwgzimsoHvKlv0IK2ONI8SCNwM1L/54JWZsWdPopyjzIS/ruBX6vB5BoySZN5cPdRQu0ty6GXKAjvqgnKzmFrJh6mN9tXvokmcMcczgSNdRi3qQqOyNTUMEDLqWEHQC2t4MYthviGFXDLVI6ts3aNyvhm4MxVlUxgwpkoiVhqw1C3X1GKwJ+Ww==
+position:
+  left: 28
+  top: 78
+size:
+  height: 12
+  width: 16

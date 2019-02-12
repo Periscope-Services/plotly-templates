@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    Based on the pie chart above, it look like organic traffic is our largest source of new users. Let's look at this a bit more closely.
+
+    This chart can be filtered by aggregation and user MVP_Level.
+chart_type: Line
+database_name: example_database
+display_name: 'Organic Growth: [MVP_Level] Users'
+encrypted_definition: b9c9DNA3hG1ki9hV2B2uQFJClYzMkLH50tLH9Bq2AP4zF4c8txr8a08yXypv4Juc72LouKxffiN6rc4n61WuMc357Ygnze1/qgz4CX5Cjl8zwAdP7wCx2k8K5gXQJkG9pja3j+Rr2hkWOO4B7c/B8jsvZBcwX27HEIcCNLFF+3u7bLrH4lEqYYVeKV9gx8cLkPou+I5p0kr5uyk3vkxEU/j9oQpKrqR6qfdOj95p4xiC698atUIn9hyAA4z+2um2XYso+NVrhBARfdtzMSnPNWuGf6J5oizUfFA0NgFmoXg4wGe7vbqX7bGsvJ4Guzk4SH1DY38PDuAwjZEo9s5adBG3sG5Ap312zdDouyl+JaZaa5EmUkqaZLfdugXJ41Fy5pXKHdev5JrF1gWpRK6u90+IPBQYkdQlqTa2w5ozQggXdsL8nz24j5UCj6xxl7/eWlubwDklHb1UkfNW7PAsJJiWf98ibjdjKRLjU0McZNfaUMQDVzfNPA0RUNWnlUS/67L/v8d9yBaWwcKHqYK7KBsPzDcmGBNMIZCbjQtxCkChVqoQA9nvq9VntpSdPoRtXDEiNSDmL5WXaFQSDQqiEg==
+position:
+  left: 0
+  top: 71
+size:
+  height: 10
+  width: 21

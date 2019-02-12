@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    Proportional Area Charts are great for showing percentage distribution.
+
+    This chart can be filtered by aggregation and date range.
+chart_type: Area
+database_name: example_database
+display_name: Distribution of Active Users by Platform Over Time
+encrypted_definition: FxZHTdRMWf3ASROoV6mfXmEPtmeyKOnwgHIyqyJ9Y993fQi+N0tKwa7uzo8rGVlHx506vGcg8X+kJHBnBbEU5zr+WQ46/yBwZcQX/8+EVb2+P8lNM+fmPPGT/83u2PEJ88rbsXVpJ5xTjkrkcsYSKAn1iTJBXbRFR/K+xQwBb8r8VmZbkvZcjiEDSDpcncRNdTuneBboiSBOOR6IqUquGXw5djGa3gmGJzNKEf3JW4oCL7io/i+p9VHt9rh5Au7nbdhDdqnkbbenuphxQFMjOei8UkB2y3QtrY9sMVyavrHm9JVImOkNB8drokncZewTve/Cl+/hQthaLE77l6l3f9Aw8TYZ5wsEB7YBHf1GoPk7OjIZs3tOC9iBMDNNH2MRKR/eSWOe6ZqlBx5mWn9rZoR7jBcJ0WyKE12yWJKmJyiLCJt0lTxpA9C3MBDqB1DBeG+Wge7vZVodyn8hpc2Hu+uSe64x2RajLs9RLFsBw+XSmBRhv4dQrlxuMQl0wG63uKZWR63gHHGqK0PQ59QIoF8sTIc4VmsItrc/3VA2WVs1QArxPdY5Q5wZJDHOFyBIojhRwiV4OZuaafaCBUcUqA==
+position:
+  left: 17
+  top: 29
+size:
+  height: 11
+  width: 13

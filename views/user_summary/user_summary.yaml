@@ -1,0 +1,6 @@
+Database Name: example_database
+Settings:
+  Materialize View: false
+  Metadata:
+    Owner: ""
+  Publish as Dataset: true

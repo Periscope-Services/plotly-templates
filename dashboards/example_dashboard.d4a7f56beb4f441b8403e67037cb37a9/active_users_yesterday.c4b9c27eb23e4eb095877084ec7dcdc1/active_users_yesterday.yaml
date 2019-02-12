@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    Number Overlay charts display a value over its underlying chart type. These are a great choice for clearly displaying information and values on a dashboard.
+
+    This charted can be filtered by the "Device" Filter.
+chart_type: Number Overlay
+database_name: example_database
+display_name: Active Users Yesterday
+encrypted_definition: eof7sBYnwUGwokv29LcYDd0ioGKLNSbGxZQ6CpsUTSzA4FSQazVW0HXxxZMiJy9YlQ77g3OZf0Rj1JP3O9J3/qF+yDRD5lx5jQzaMvJRbyVbvMdXAv3Z+6jrVZz+ePJ9jByzt/cm4IXckBOpo/kOTs84A7O70j+YQyle4QJkCUEX6rrK0hjG9OKihRzdfmVDWdeYKTLWJALKiI5AqJOXo0f6GmuSlmyY50uaw0H2clSCCOzU562qJi+7anNTUod9LWJdBnX11gGl09TaFDVsTeXabScbMJq9pgbp/2TJuY+R/fHZUz7amDL5fLGSbUGOn6Vmy4UESUi7xW2nvSMzH1fvERuVed1bQ96Yrv/RZbwxusVptgdf2K0xw4g0uEniTklz+NnqqUor2fsgl3yb3g23MQRNDoY8hEhuZ/FKOHqdFNocfeHaLe7iNSsmKaYut7vhRScjR+RgPJLb24Q5UA==
+position:
+  left: 17
+  top: 7
+size:
+  height: 9
+  width: 18

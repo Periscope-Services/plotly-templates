@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    How much do we earn per user based on what we spend on ads?
+
+    This chart can be filtered by User MVP Level
+chart_type: Bar
+database_name: example_database
+display_name: 'Source Revenue and Cost: [MVP_Level] Users'
+encrypted_definition: A4OS5zoquwFO6owsO6uklU0/8mEJpZ12ASes1F1PB+RMHhhB1mOIvB7ergjZ4NvRdSGvJKXRbReDnCkVChiwSe3LtNxggvvnHW5crVsk33i+SRQqHtMCMQE1Sq/b/bn/XpXSSoyaey819hbnHt0zcsK8awZJz7i8egKmJMw9DpVTRk7IrbVA7MHRc0XMJ3gnh75whRejDPwSNyfgpYp7TgAsMXpgz4dbwlm/6/Fix0CsVWnDloAsY3/HSLKOhWIcuZPk8GljnKFNX4AoOdnPKM9y4YJCrXfGYQLXfapSYShsoZX9T8ATcE0Wn3SL7nIVFnDOqOh4m5rN/6VMXyGEx/x+GTGW6/IEjvS5aD72XitwbaXFbVNZh2kxlnB5uLcfwRieTjJol0RDZ+CXgcZea8drqIuuENziJm+SFhCLF5KEDDCq3SnlP8l7XL8Sdv6GtK2+55l4RmW8N/+qnKAVTyCCbGrFfnDkA4iPZagGq6cu7pNaBQW/8ZJpab6tQ9bvLD0ixa2nyNR3mDi2i5FSxyq8ey7mCENsIII4+6GKJXHHv7rMsBLWV5BlEneAzbWSoluU4SgPCvdO+2KlfnNLbvIETX212XtjYsyv2gWeCDyLJkGEaoVROVlKd/GzyzvWkumpyM/ou696P3KDGx3zoDYs9udof1viRahj6u5v6VGJGJ4FHixE04d7mGP1TM7rF6+83EGErTlm93/ZcCdKL0VtSmIFciQvgOgoD3nhaxY=
+position:
+  left: 28
+  top: 64
+size:
+  height: 14
+  width: 16

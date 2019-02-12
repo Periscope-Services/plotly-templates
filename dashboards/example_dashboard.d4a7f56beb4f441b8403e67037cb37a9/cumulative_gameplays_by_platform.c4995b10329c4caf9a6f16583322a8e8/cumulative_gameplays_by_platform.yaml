@@ -1,0 +1,15 @@
+advanced:
+  description: |-
+    How have our gameplay numbers grown over time?
+
+    This chart can be filtered by the aggregation and date range filters.
+chart_type: Bar
+database_name: example_database
+display_name: Cumulative Gameplays by Platform
+encrypted_definition: RYsTIF4rtRDj23vcHuZpqvmapkJlgp64lK2VIeRWlA+S9nVvlVf7in0LKirb0DBS2tUh1YpFewfYMtV168FabNEj15LImAlX9Y5y9S8BV7QzTxCfi6I367kwVcm8Y6b+c42aEaY9Uh8lhaFo9uuPB+bFwffX37jxvBsO+Kr6o6H+MkTzGsT1eOIMQW8uBtXs2qumZqnfcudvc/0MqiwBWQOi51ZtFB0raHQexUuBYuI9j20u9KFo1Aojd9zwyo6ycErSQYPxfQZQImE/IWoLAQ6B4+3QPpCXsrgGeRt1/CenS7mhT+16PdNTD2CJjBnBX/XpHC4OoOlxUTR1Zf32dh9MPAYcmnFh6ZvU2yseNd0gihO/9kn2kGUBzhuJVf1xgQZwKw0jo6MJ79WAGv19/UVXerybreh07Sr+RMHZQM7KzJeY3/Nlke+jzeZASil0xmqluNsle4gkfpq0DgbTg1rn7YGoajw7JYoqpspa0dgzwAefKZz8V7qckaGaZOegSDcnfhTAi6lmwczU9eWCJ3p3dCk/D1NbjXKrN+x1jsf7dyMUqK3pCalfszV5UmHXNUK9pAiA3Y5rgRUx1Hckng==
+position:
+  left: 0
+  top: 47
+size:
+  height: 10
+  width: 21

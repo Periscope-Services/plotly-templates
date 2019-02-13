@@ -12,7 +12,7 @@ success = 'Closed Won'
 base_date = datetime.datetime.now() + timedelta(days=-365)
 
 data = []
-for i in range(0, 10000):
+for i in range(0, 400):
     unique_id = uuid.uuid4().hex
     start_date = base_date + timedelta(days=random.randint(1, 30))
     data.append(dict(unique_id=unique_id, stage_name=start, sort=start_date))

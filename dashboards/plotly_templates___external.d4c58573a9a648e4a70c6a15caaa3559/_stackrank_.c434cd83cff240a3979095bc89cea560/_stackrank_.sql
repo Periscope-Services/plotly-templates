@@ -5,6 +5,6 @@ select
 from
   [stackrank_dummy_data]
 where
-  [date=10days]
+  [date=7days]
 order by
   1

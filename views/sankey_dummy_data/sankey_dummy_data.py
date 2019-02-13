@@ -19,21 +19,21 @@ for i in range(0, 400):
 
     last_intermediate = False
     for stage in intermediate_stages:
-        date = start_date + timedelta(days=random.randint(1, 30))
+        start_date = start_date + timedelta(days=random.randint(1, 30))
         if random.randint(1, 100) < 80:
-            data.append(dict(unique_id=unique_id, stage_name=stage, sort=date))
+            data.append(dict(unique_id=unique_id, stage_name=stage, sort=start_date))
             if stage == intermediate_stages[-1]:
                 last_intermediate = True
         else:
-            data.append(dict(unique_id=unique_id, stage_name=fail, sort=date))
+            data.append(dict(unique_id=unique_id, stage_name=fail, sort=start_date))
             break
 
     if last_intermediate:
-        date = start_date + timedelta(days=random.randint(1, 30))
+        start_date = start_date + timedelta(days=random.randint(1, 30))
         if random.randint(1, 100) < 80:
-            data.append(dict(unique_id=unique_id, stage_name=success, sort=date))
+            data.append(dict(unique_id=unique_id, stage_name=success, sort=start_date))
         else:
-            data.append(dict(unique_id=unique_id, stage_name=fail, sort=date))
+            data.append(dict(unique_id=unique_id, stage_name=fail, sort=start_date))
 
 df = pd.DataFrame(data)
 periscope.materialize(df)

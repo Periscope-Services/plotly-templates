@@ -14,26 +14,25 @@ base_date = datetime.datetime.now() + timedelta(days=-365)
 data = []
 for i in range(0, 400):
     unique_id = uuid.uuid4().hex
-    start_date = base_date + timedelta(days=random.randint(1, 30))
-    data.append(dict(unique_id=unique_id, stage_name=start, sort=start_date))
+    date = base_date + timedelta(days=random.randint(1, 30))
+    data.append(dict(unique_id=unique_id, stage_name=start, sort=date))
 
     last_intermediate = False
     for stage in intermediate_stages:
-        start_date = start_date + timedelta(days=random.randint(1, 30))
+        date = date + timedelta(days=random.randint(1, 30))
         if random.randint(1, 100) < 80:
-            data.append(dict(unique_id=unique_id, stage_name=stage, sort=start_date))
-            if stage == intermediate_stages[-1]:
-                last_intermediate = True
+            data.append(dict(unique_id=unique_id, stage_name=stage, sort=date))
+            last_intermediate = (stage == intermediate_stages[-1])
         else:
-            data.append(dict(unique_id=unique_id, stage_name=fail, sort=start_date))
+            data.append(dict(unique_id=unique_id, stage_name=fail, sort=date))
             break
 
     if last_intermediate:
-        start_date = start_date + timedelta(days=random.randint(1, 30))
+        date = date + timedelta(days=random.randint(1, 30))
         if random.randint(1, 100) < 80:
-            data.append(dict(unique_id=unique_id, stage_name=success, sort=start_date))
+            data.append(dict(unique_id=unique_id, stage_name=success, sort=date))
         else:
-            data.append(dict(unique_id=unique_id, stage_name=fail, sort=start_date))
+            data.append(dict(unique_id=unique_id, stage_name=fail, sort=date))
 
 df = pd.DataFrame(data)
 periscope.materialize(df)

@@ -18,9 +18,9 @@ for i in range(0, 400):
     data.append(dict(unique_id=unique_id, stage_name=start, sort=date))
 
     last_intermediate = False
-    for stage in intermediate_stages:
+    for idx, stage in enumerate(intermediate_stages):
         date = date + timedelta(days=random.randint(1, 30))
-        if random.randint(1, 100) < 80:
+        if random.randint(1, 100) < 80 - 5 * idx :
             data.append(dict(unique_id=unique_id, stage_name=stage, sort=date))
             last_intermediate = (stage == intermediate_stages[-1])
         else:

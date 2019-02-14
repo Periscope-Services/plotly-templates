@@ -1,0 +1,6 @@
+Database Name: Cache
+Settings:
+  Materialize View: true
+  Metadata:
+    Owner: rfriedland@periscopedata.com
+code_language: python3.6

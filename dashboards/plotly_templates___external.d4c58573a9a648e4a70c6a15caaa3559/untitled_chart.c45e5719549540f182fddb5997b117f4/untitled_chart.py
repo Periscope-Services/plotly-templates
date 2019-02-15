@@ -34,9 +34,9 @@ def color(end):
   color = gradient(pct, [0, 1], ['#ff0000', '#00be11'])
   return color
 
-pct = 0.25
+pct = .25
 start_x = 0.24
-start_y = 0.45
+start_y = 0.5
 h = 0.3
 base = 0.01
 theta = pct * 180
@@ -44,10 +44,11 @@ theta = pct * 180
 left_point_x = start_x - base * math.cos(90 - theta)
 left_point_y = start_y - base * math.sin(90 - theta)
 
-print(left_point_x, left_point_y)
-
 center_point_x = start_x - h * math.cos(theta)
 center_point_y = start_y + h * math.sin(theta)
+
+right_point_x = start_x + base * math.sin(theta)
+right_point_y = start_y + base * math.cos(theta)
 
 offset = 50
 
@@ -92,7 +93,7 @@ layout = {
     'shapes': [
         {
             'type': 'path',
-            'path': f'M {left_point_x} {left_point_y} L {center_point_x} {center_point_y} Z',
+            'path': f'M {left_point_x} {left_point_y} L {center_point_x} {center_point_y} L {right_point_x} {right_point_y} Z',
             'fillcolor': 'rgba(44, 160, 101, 0.5)',
             'line': {
                 'width': 0.5
@@ -101,16 +102,16 @@ layout = {
             'yref': 'paper'
         }
     ],
-    'annotations': [
-        {
-            'xref': 'paper',
-            'yref': 'paper',
-            'x': 0.23,
-            'y': 0.45,
-            'text': '50',
-            'showarrow': False
-        }
-    ]
+#     'annotations': [
+#         {
+#             'xref': 'paper',
+#             'yref': 'paper',
+#             'x': 0.23,
+#             'y': 0.45,
+#             'text': '50',
+#             'showarrow': False
+#         }
+#     ]
 }
 fig = dict(data=[base_chart], layout=layout)
 

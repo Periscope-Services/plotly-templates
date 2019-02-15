@@ -14,16 +14,16 @@ def format(column):
     return '.0%'
   else:
     return 's'
+  
+def unique_vals(df, column){
+  return df.groupby(column).size().reset_index()[column]
 
 # get the x, y, and series columns
 def get_columns(df):
   x_column = [c for c in df.columns if c.startswith('X')][0]
   y_columns = [c for c in df.columns if c.startswith('Y')]
   series_columns = [c for c in df.columns if c.startswith('S')]
-  if len(series_columns) > 0:
-  	unique_series = df.groupby(series_columns).size().reset_index()[series_columns]
-  else:
-    unique_series = None
+  unique_series = unique_vals(df, series_columns) if len(series_columns) > 0 else None
   return x_column, y_columns, series_columns, unique_series
 
 def button(y_col, y_columns, unique_series = None):

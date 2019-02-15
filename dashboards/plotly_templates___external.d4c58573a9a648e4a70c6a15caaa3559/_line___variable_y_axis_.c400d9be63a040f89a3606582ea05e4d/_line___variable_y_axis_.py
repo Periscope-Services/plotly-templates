@@ -15,7 +15,7 @@ def format(column):
   else:
     return 's'
   
-def unique_vals(df, column){
+def unique_vals(df, column):
   return df.groupby(column).size().reset_index()[column]
 
 # get the x, y, and series columns

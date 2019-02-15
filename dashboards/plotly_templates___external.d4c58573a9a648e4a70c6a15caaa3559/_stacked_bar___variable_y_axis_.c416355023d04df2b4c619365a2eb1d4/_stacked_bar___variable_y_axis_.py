@@ -14,16 +14,16 @@ def format(column):
     return '.0%'
   else:
     return 's'
+  
+def unique_vals(df, column):
+  return df.groupby(column).size().reset_index()[column]
 
 # get the x, y, and series columns
 def get_columns(df):
   x_column = [c for c in df.columns if c.startswith('X')][0]
   y_columns = [c for c in df.columns if c.startswith('Y')]
   series_columns = [c for c in df.columns if c.startswith('S')]
-  if len(series_columns) > 0:
-  	unique_series = df.groupby(series_columns).size().reset_index()[series_columns]
-  else:
-    unique_series = None
+  unique_series = unique_vals(df, series_columns) if len(series_columns) > 0 else None
   return x_column, y_columns, series_columns, unique_series
 
 def button(y_col, y_columns, unique_series = None):
@@ -109,7 +109,6 @@ if isinstance(df[x_column].iloc[0], datetime.date):
              
 layout = {
   'showlegend': showlegend,
-  'updatemenus': updatemenus,
   'yaxis': {
     'tickformat': format(first_y),
     'hoverformat': format(first_y)
@@ -118,11 +117,15 @@ layout = {
   'margin': {
     't': 20,
     'b': 50,
-    'l': 10,
+    'l': 60,
     'r': 10
   },
   'barmode': 'stack'
 }
+if len(y_columns) > 1:
+  layout['updatemenus'] = updatemenus
+else:
+	layout['yaxis']['title'] = column_name(y_columns[0])
 
 fig = dict(data=data, layout=layout)
 

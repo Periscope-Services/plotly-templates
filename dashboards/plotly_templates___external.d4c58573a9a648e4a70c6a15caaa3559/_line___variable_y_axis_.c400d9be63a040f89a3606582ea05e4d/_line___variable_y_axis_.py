@@ -109,7 +109,6 @@ if isinstance(df[x_column].iloc[0], datetime.date):
              
 layout = {
   'showlegend': showlegend,
-  'updatemenus': updatemenus,
   'yaxis': {
     'tickformat': format(first_y),
     'hoverformat': format(first_y)
@@ -118,10 +117,14 @@ layout = {
   'margin': {
     't': 20,
     'b': 50,
-    'l': 10,
+    'l': 60,
     'r': 10
   }
 }
+if len(y_columns) > 1:
+  layout['updatemenus'] = updatemenus
+else:
+	layout['yaxis']['title'] = column_name(y_columns[0])
 
 fig = dict(data=data, layout=layout)
 

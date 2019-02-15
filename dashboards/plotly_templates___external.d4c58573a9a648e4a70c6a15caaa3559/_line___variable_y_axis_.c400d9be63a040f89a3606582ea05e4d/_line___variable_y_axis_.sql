@@ -31,10 +31,10 @@ select
   coalesce(p.date, g.date) as x_date
   , coalesce(p.platform, g.platform) as s_platform
   , sum_purchases as "y$_revenue"
-  , num_purchases as y_purchases
-  , num_gameplays as y_plays
-  , 1.0 * num_purchases / num_gameplays as "y%_conversion_rate"
-  , 1.0 * sum_purchases / num_purchases as "y$_avg_purchase"
+--   , num_purchases as y_purchases
+--   , num_gameplays as y_plays
+--   , 1.0 * num_purchases / num_gameplays as "y%_conversion_rate"
+--   , 1.0 * sum_purchases / num_purchases as "y$_avg_purchase"
 from
   purchases p
   full join gameplays g on

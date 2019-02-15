@@ -76,7 +76,7 @@ layout = {
     'shapes': [
         {
             'type': 'path',
-            'path': 'M 0.235 0.5 L 0.24 0.65 L 0.245 0.5 Z',
+            'path': 'M 0.235,0.5 l 100,100 Z',
             'fillcolor': 'rgba(44, 160, 101, 0.5)',
             'line': {
                 'width': 0.5

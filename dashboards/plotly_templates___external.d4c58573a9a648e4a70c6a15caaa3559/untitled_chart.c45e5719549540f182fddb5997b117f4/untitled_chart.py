@@ -60,7 +60,15 @@ base_chart = {
     "hoverinfo": "none"
 }
 
-fig = dict(data=[base_chart])
+layout = {
+  'margin': {
+    'l': 0,
+    'r': 0,
+    't': 0,
+    'b': 0
+  }
+}
+fig = dict(data=[base_chart], layout=layout)
 
 # Use Periscope to visualize a dataframe by passing the data to periscope.output()
 periscope.plotly(fig)

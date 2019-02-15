@@ -47,13 +47,16 @@ layout = {
   'margin': {
     'l': 50,
     'r': 0,
-    'b': 30,
+    'b': 50,
     't': 0
   },
   'yaxis': {
     'title': column_name(y_column),
     'tickformat': format(y_column),
     'hoverformat': format(y_column)
+  },
+  'xaxis': {
+    'title': f'{", ".join([column_name(col) for col in series_columns])}'
   }
 }
 

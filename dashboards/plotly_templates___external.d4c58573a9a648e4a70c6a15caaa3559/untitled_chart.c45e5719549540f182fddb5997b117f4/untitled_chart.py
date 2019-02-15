@@ -26,29 +26,25 @@ def gradient(value, scale, colors):
 def arc(offset, start, end):
   pct =  1.0 * (end - start) / 100
   color = gradient(pct, [0, 1], ['#ff0000', '#00be11'])
-  return pct * offset, color
+  return pct * offset
+
+def color(end):
+  pct =  1.0 * end / 100
+  color = gradient(pct, [0, 1], ['#ff0000', '#00be11'])
+  return color
 
 offset = 50
 
 df.columns = [c.upper() for c in df.columns]
 df['PRIOR_VAL'] = df['VAL'].shift(1)
 df = df.fillna(0)
-print([offset] + [arc(offset, row['PRIOR_VAL'], row['VAL']) for idx, row in df.iterrows()])
 
 base_chart = {
     "values": [offset] + [arc(offset, row['PRIOR_VAL'], row['VAL']) for idx, row in df.iterrows()],
-    "labels": ["-", "0", "20", "40", "60", "80", "100"],
+    "labels": [''] + [row['STAGE'] for idx, row in df.iterrows()],
     "domain": {"x": [0, .48]},
     "marker": {
-        "colors": [
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)',
-            'rgb(255, 255, 255)'
-        ],
+        "colors": ['white'] + [color(row['VAL']) for idx, row in df.iterrows()],
         "line": {
             "width": 1
         }
@@ -57,12 +53,14 @@ base_chart = {
     "hole": .4,
     "type": "pie",
     "direction": "clockwise",
-    "rotation": 108,
+    "rotation": 90,
     "showlegend": False,
     "hoverinfo": "none",
     "textinfo": "label",
     "textposition": "outside"
 }
 
+fig = dict(data=[base_chart])
+
 # Use Periscope to visualize a dataframe by passing the data to periscope.output()
-periscope.output(df)
+periscope.plotly(fig)

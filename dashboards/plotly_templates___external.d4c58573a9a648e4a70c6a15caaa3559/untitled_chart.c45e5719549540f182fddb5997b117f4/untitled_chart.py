@@ -60,13 +60,41 @@ base_chart = {
     "hoverinfo": "none"
 }
 
+current_val = df['CURRENT_VAL'].max()
+
 layout = {
-  'margin': {
-    'l': 0,
-    'r': 0,
-    't': 0,
-    'b': 0
-  }
+    'xaxis': {
+        'showticklabels': False,
+        'showgrid': False,
+        'zeroline': False,
+    },
+    'yaxis': {
+        'showticklabels': False,
+        'showgrid': False,
+        'zeroline': False,
+    },
+    'shapes': [
+        {
+            'type': 'path',
+            'path': 'M 0.235 0.5 L 0.24 0.65 L 0.245 0.5 Z',
+            'fillcolor': 'rgba(44, 160, 101, 0.5)',
+            'line': {
+                'width': 0.5
+            },
+            'xref': 'paper',
+            'yref': 'paper'
+        }
+    ],
+    'annotations': [
+        {
+            'xref': 'paper',
+            'yref': 'paper',
+            'x': 0.23,
+            'y': 0.45,
+            'text': '50',
+            'showarrow': False
+        }
+    ]
 }
 fig = dict(data=[base_chart], layout=layout)
 

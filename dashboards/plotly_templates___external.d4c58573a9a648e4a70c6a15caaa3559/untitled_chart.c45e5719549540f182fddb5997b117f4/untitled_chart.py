@@ -2,6 +2,7 @@
 import pandas as pd 
 import plotly.plotly as py
 import plotly.graph_objs as go
+import math
 
 def rgb_from_hex(hex):
   h = hex.lstrip('#')
@@ -32,6 +33,21 @@ def color(end):
   pct =  1.0 * end / 100
   color = gradient(pct, [0, 1], ['#ff0000', '#00be11'])
   return color
+
+pct = 0.25
+start_x = 0.24
+start_y = 0.45
+h = 0.3
+base = 0.01
+theta = pct * 180
+
+left_point_x = start_x - base * math.cos(90 - theta)
+left_point_y = start_y - base * math.sin(90 - theta)
+
+print(left_point_x, left_point_y)
+
+center_point_x = start_x - h * math.cos(theta)
+center_point_y = start_y + h * math.sin(theta)
 
 offset = 50
 
@@ -76,7 +92,7 @@ layout = {
     'shapes': [
         {
             'type': 'path',
-            'path': 'M 0.235,0.5 l 100,100 Z',
+            'path': f'M {left_point_x} {left_point_y} L {center_point_x} {center_point_y} Z',
             'fillcolor': 'rgba(44, 160, 101, 0.5)',
             'line': {
                 'width': 0.5

@@ -41,7 +41,7 @@ df = df.fillna(0)
 
 base_chart = {
     "values": [offset] + [arc(offset, row['PRIOR_VAL'], row['VAL']) for idx, row in df.iterrows()],
-    "labels": [''] + [row['STAGE'] for idx, row in df.iterrows()],
+    "labels": [' '] + [row['STAGE'] for idx, row in df.iterrows()],
     "domain": {"x": [0, .48]},
     "marker": {
         "colors": ['white'] + [color(row['VAL']) for idx, row in df.iterrows()],
@@ -50,14 +50,14 @@ base_chart = {
         }
     },
     "name": "Gauge",
-    "hole": .4,
+    "hole": .3,
     "type": "pie",
     "direction": "clockwise",
     "rotation": 90,
     "showlegend": False,
-    "hoverinfo": "none",
     "textinfo": "label",
-    "textposition": "outside"
+    "textposition": "inside",
+    "hoverinfo": "none"
 }
 
 fig = dict(data=[base_chart])

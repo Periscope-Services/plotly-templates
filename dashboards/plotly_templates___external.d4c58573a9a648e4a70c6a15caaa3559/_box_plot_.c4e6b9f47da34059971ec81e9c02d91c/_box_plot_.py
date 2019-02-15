@@ -7,6 +7,14 @@ from datetime import timedelta
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
+def format(column):
+  if column.startswith('Y$'):
+    return '$s'
+  elif column.startswith('Y%'):
+    return '.0%'
+  else:
+    return 's'
+
 def get_columns(df):
   y_column = [c for c in df.columns if c.startswith('Y')][0]
   series_columns = [c for c in df.columns if c.startswith('S')]
@@ -34,4 +42,20 @@ for idx, series in unique_series.iterrows():
   )
 
 data = traces
-periscope.plotly(data)
+
+layout = {
+  'margin': {
+    'l': 50,
+    'r': 0,
+    'b': 30,
+    't': 0
+  },
+  'yaxis': {
+    'title': column_name(y_column),
+    'tickformat': format(y_column),
+    'hoverformat': format(y_column)
+  }
+}
+
+fig = dict(data=data, layout=layout)
+periscope.plotly(fig)

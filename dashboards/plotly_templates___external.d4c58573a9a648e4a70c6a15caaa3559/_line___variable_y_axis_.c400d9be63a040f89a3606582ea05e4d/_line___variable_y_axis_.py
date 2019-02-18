@@ -22,7 +22,7 @@ def unique_vals(df, column):
 def get_columns(df):
   x_column = [c for c in df.columns if c.startswith('X')][0]
   y_columns = [c for c in df.columns if c.startswith('Y')]
-  series_columns = [c for c in df.columns if c.startswith('S')]
+  series_columns = [c for c in df.columns if c.startswith('S_')]
   unique_series = unique_vals(df, series_columns) if len(series_columns) > 0 else None
   return x_column, y_columns, series_columns, unique_series
 

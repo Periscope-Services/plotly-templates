@@ -2,7 +2,7 @@ from collections import namedtuple
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
-import numpy as np
+import math
 
 # GENERIC HELPER FUNCTIONS
 def dollars(num):
@@ -35,6 +35,7 @@ def row_as_tuple(df):
 
 data = row_as_tuple(df.iloc[[0]])
 current = data.current
+current = 1900000
 goal = data.goal
 pct = 1.0 * current / goal
 
@@ -49,13 +50,21 @@ donut = go.Pie(
   sort=False
 )
 
+x = .5 * (1 + math.cos(math.radians((1 - pct) * 360 + 90)))
+y = .5 * (1 + math.sin(math.radians((1 - pct) * 360 + 90)))
+print(x)
+print(y)
+
+xsign = -1 if pct <= .5 else 1
+ysign = 1 if pct <= .5 else -1
+
 layout = go.Layout(
   showlegend = False,
   margin = {
-    't': 10,
-    'b': 10,
-    'l': 10,
-    'r': 10
+    't': 30,
+    'b': 30,
+    'l': 30,
+    'r': 30
   },
   annotations = [
 		{
@@ -66,11 +75,12 @@ layout = go.Layout(
       'text': style_text(percent(pct), font_size='48px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='26px')
     },
     {
-      'x': 1 + .5 * np.cos(np.pi - 2 * np.pi * (float(current) % goal /goal)),
-      'y': 1 + .5 * np.sin(np.pi - 2 * np.pi * (float(current) % goal / goal)),
-      'ax': 0,
-      'ay': 0,
-      'text': dollars(current)
+      'x': x,
+      'y': y,
+      'ax': xsign * 20,
+      'ay': ysign * 20,
+    	'arrowcolor': 'rgba(0,0,0,0)',
+      'text': style_text(dollars(current), font_size='18px')
     }
   ]
 )

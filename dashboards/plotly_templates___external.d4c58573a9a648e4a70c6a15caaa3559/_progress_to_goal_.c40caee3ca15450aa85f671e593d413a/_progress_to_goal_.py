@@ -65,7 +65,7 @@ layout = go.Layout(
   annotations = [
 		{
       'x': 0.5,
-      'y': 0.5,
+      'y': 0.55,
       'ax': 0,
       'ay': 0,
       'text': style_text(percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + dollars(goal), font_size='18px')

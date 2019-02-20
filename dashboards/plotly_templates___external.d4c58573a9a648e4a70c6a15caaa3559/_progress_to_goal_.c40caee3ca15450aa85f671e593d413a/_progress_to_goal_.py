@@ -51,7 +51,7 @@ donut = go.Pie(
 
 x = .5 * (1 + math.cos(math.radians((1 - pct) * 360 + 90)))
 y = .5 * (1 + math.sin(math.radians((1 - pct) * 360 + 90)))
-xsign = -1 if pct <= .5 else 1
+xsign = 1 if pct <= .5 else -1
 ysign = 1 if pct <= .5 else -1
 
 layout = go.Layout(

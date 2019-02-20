@@ -65,7 +65,7 @@ layout = go.Layout(
       'y': 0.5,
       'ax': 0,
       'ay': 0,
-      'text': style_text(percent(pct), font_size='60px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='32px')
+      'text': style_text(percent(pct), font_size='48px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='26px')
     },
     {
       'x': np.cos(np.pi - 2 * np.pi * (float(current) % goal /goal)),

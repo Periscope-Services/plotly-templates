@@ -72,7 +72,7 @@ layout = go.Layout(
       'y': 0.5,
       'ax': 0,
       'ay': 0,
-      'text': style_text(percent(pct), font_size='48px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='26px')
+      'text': style_text(percent(pct), font_size='32px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='20px')
     },
     {
       'x': x,

@@ -35,7 +35,6 @@ def row_as_tuple(df):
 
 data = row_as_tuple(df.iloc[[0]])
 current = data.current
-current = 1900000
 goal = data.goal
 pct = 1.0 * current / goal
 
@@ -52,9 +51,6 @@ donut = go.Pie(
 
 x = .5 * (1 + math.cos(math.radians((1 - pct) * 360 + 90)))
 y = .5 * (1 + math.sin(math.radians((1 - pct) * 360 + 90)))
-print(x)
-print(y)
-
 xsign = -1 if pct <= .5 else 1
 ysign = 1 if pct <= .5 else -1
 

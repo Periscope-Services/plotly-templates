@@ -76,7 +76,7 @@ layout = go.Layout(
       'ax': xsign * 20,
       'ay': ysign * 20,
     	'arrowcolor': 'rgba(0,0,0,0)',
-      'text': style_text(dollars(current), font_size='14px')
+      'text': style_text(dollars(current), font_size='14px', font_weight='bold')
     }
   ]
 )

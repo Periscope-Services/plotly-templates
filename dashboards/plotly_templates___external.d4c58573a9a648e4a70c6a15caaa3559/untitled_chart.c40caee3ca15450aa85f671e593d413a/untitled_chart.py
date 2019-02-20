@@ -41,14 +41,12 @@ pct = 1.0 * current / goal
 donut = go.Pie(
  	values = [current, goal - current if goal > current else 0],
   marker = {
-    'colors': ['#1C6CAB', '#ffffff']
-  },
-  domain = {
-    'x': [0, 1]
+    'colors': ['rgb(28,108,171)', 'rgba(28,108,171,0.2)']
   },
   hole = .8,
   textinfo='none',
-  hoverinfo='none'
+  hoverinfo='none',
+  sort=False
 )
 
 layout = go.Layout(
@@ -68,8 +66,8 @@ layout = go.Layout(
       'text': style_text(percent(pct), font_size='48px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='26px')
     },
     {
-      'x': np.cos(np.pi - 2 * np.pi * (float(current) % goal /goal)),
-      'y': np.sin(np.pi - 2 * np.pi * (float(current) % goal / goal)),
+      'x': 1 + .5 * np.cos(np.pi - 2 * np.pi * (float(current) % goal /goal)),
+      'y': 1 + .5 * np.sin(np.pi - 2 * np.pi * (float(current) % goal / goal)),
       'ax': 0,
       'ay': 0,
       'text': dollars(current)

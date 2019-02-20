@@ -33,7 +33,8 @@ with
       1
   )
 select
-  sum(revenue) as current
+--   sum(revenue) as current
+  1900000 as current
   , sum(goal) as goal
 from
   mtd_sales

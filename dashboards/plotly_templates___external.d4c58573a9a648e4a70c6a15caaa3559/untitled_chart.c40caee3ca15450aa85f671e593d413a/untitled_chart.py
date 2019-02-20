@@ -2,6 +2,7 @@ from collections import namedtuple
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
+import numpy as np
 
 # GENERIC HELPER FUNCTIONS
 def dollars(num):
@@ -46,9 +47,36 @@ donut = go.Pie(
     'x': [0, 1]
   },
   hole = .8,
-  textinfo='none'
+  textinfo='none',
+  hoverinfo='none'
 )
 
-fig = dict(data=[donut])
+layout = go.Layout(
+  showlegend = False,
+  margin = {
+    't': 10,
+    'b': 10,
+    'l': 10,
+    'r': 10
+  },
+  annotations = [
+		{
+      'x': 0.5,
+      'y': 0.5,
+      'ax': 0,
+      'ay': 0,
+      'text': style_text(percent(pct), font_size='60px', font_weight='bold') + '<br><br><br>' + style_text('Goal: ' + dollars(goal), font_size='32px')
+    },
+    {
+      'x': np.cos(np.pi - 2 * np.pi * (float(current) % goal /goal)),
+      'y': np.sin(np.pi - 2 * np.pi * (float(current) % goal / goal)),
+      'ax': 0,
+      'ay': 0,
+      'text': dollars(current)
+    }
+  ]
+)
+
+fig = dict(data=[donut], layout=layout)
 
 periscope.plotly(fig)

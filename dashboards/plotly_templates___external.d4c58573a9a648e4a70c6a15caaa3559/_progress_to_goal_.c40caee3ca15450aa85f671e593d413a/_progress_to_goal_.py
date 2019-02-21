@@ -47,10 +47,12 @@ def rgba_from_hex(hex, alpha):
 color = '#1c6cab'
 
 df.columns = [c.upper() for c in df.columns]
-current_col = [c for c in df.columns 
+current_col = [c for c in df.columns if c.startswith('CURRENT')][0]
+goal_col = [c for c in df.columns if c.startswith('GOAL')][0]
 data = df.iloc[[0]]
-current = data.current
-goal = data.goal
+current = data[current_col].iloc[0]
+goal = data[goal_col].iloc[0]
+
 pct = 1.0 * current / goal
 
 

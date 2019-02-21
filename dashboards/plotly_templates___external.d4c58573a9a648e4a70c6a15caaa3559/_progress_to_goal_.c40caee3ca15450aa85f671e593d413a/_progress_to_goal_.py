@@ -33,6 +33,18 @@ def row_as_tuple(df):
   dictionary = df.to_dict(orient='records')[0]
   return namedtuple('Tuple', dictionary.keys())(*dictionary.values())
 
+def rgb_from_hex(hex):
+  h = hex.lstrip('#')
+  return tuple(((int(h[i:i+2], 16))) for i in (0, 2 ,4))
+
+def rgb_to_hex(rgb):
+  return '#%02x%02x%02x' % rgb
+
+def rgba_from_hex(hex, alpha):
+  rgb = rgb_from_hex(hex)
+  return f'rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})'
+
+color = '#1c6cab'
 data = row_as_tuple(df.iloc[[0]])
 current = data.current
 goal = data.goal
@@ -41,7 +53,7 @@ pct = 1.0 * current / goal
 donut = go.Pie(
  	values = [current, goal - current if goal > current else 0],
   marker = {
-    'colors': ['rgb(28,108,171)', 'rgba(28,108,171,0.2)']
+    'colors': [color, rgba_from_hex(color, .2)]
   },
   hole = .8,
   textinfo='none',

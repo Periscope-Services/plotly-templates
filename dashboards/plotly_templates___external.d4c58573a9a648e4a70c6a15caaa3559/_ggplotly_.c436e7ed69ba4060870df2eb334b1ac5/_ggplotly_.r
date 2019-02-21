@@ -5,6 +5,7 @@ library(plotly)
 p=ggplot(iris, aes(x=Sepal.Length, y=Sepal.Width, color=Species, shape=Species)) + 
     geom_point(size=6, alpha=0.6)
 
-p
 # plotly object!
+p <- ggplotly(p)
+
 periscope.plotly(ggplotly(p))

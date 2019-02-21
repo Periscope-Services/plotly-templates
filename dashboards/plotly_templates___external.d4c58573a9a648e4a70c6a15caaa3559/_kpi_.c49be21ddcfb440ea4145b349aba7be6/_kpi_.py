@@ -4,6 +4,22 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 
 # GENERIC HELPER FUNCTIONS
+def get_formatter(column):
+  if '$' in column:
+    return '$'
+  elif '%' in column:
+    return '%'
+  else:
+    return None
+
+def format(num, formatter = None):
+  if formatter is None:
+    return abbrev(num)
+  elif formatter == '$':
+    return dollars(num)
+  elif formatter == '%':
+    return percent(num)
+
 def dollars(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -12,8 +28,16 @@ def dollars(num):
     num /= 1000.0
   return '${}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+def abbrev(num):
+  num = float('{:.3g}'.format(float(num)))
+  magnitude = 0
+  while abs(num) >= 1000:
+    magnitude += 1
+    num /= 1000.0
+  return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
 def percent(pct):
-  return str(int((float(pct)*100))) + '%'
+  return str(int(round(pct*100))) + '%'
 
 def number_overlay(text):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True)
@@ -66,20 +90,19 @@ if df.size==0:
 	no_data()
 
 else:
-  df.sort_values(by='date', ascending=False, inplace=True)
-  current_val = df['revenue'].iloc[0]
-  prior_val = df['revenue'].iloc[1]
+  df.columns = [c.upper() for c in df.columns]
+  kpi_col = [c for c in df.columns if c.startswith('KPI')][0]
+  formatter = get_formatter(kpi_col)
+  df.sort_values(by='DATE', ascending=False, inplace=True)
+  current_val = df[kpi_col].iloc[0]
+  prior_val = df[kpi_col].iloc[1]
   percentage_change = 1.0 * current_val / prior_val - 1 if prior_val > 0 else None
   indicator = '▲' if current_val > prior_val else '▼'
   kpi_change = indicator + ' ' + percent(percentage_change) + ' From Prior Period'
   color = gradient(percentage_change, [-.25, .25], ['#ff0000', '#00be11'])
   
   text = (
-    style_text('Revenue', font_size='24px', font_weight='bold') + 
-    '<br>' + 
-    style_text('Month-to-Date', font_size='14px', font_style='italic') + 
-    '<br><br><br><br>' + 
-    style_text(dollars(current_val), font_size='50px', font_weight='bold') +
+    style_text(format(current_val, formatter), font_size='50px', font_weight='bold') +
     '<br><br>' +
     style_text(kpi_change, font_size='16px', color=color)
   )

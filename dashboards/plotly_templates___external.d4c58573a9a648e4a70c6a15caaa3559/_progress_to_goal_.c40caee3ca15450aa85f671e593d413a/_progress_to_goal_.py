@@ -5,6 +5,22 @@ import plotly.graph_objs as go
 import math
 
 # GENERIC HELPER FUNCTIONS
+def get_formatter(column):
+  if '$' in column:
+    return '$'
+  elif '%' in column:
+    return '%'
+  else:
+    return None
+
+def format(num, formatter = None):
+  if formatter is None:
+    return abbrev(num)
+  elif formatter == '$':
+    return dollars(num)
+  elif formatter == '%':
+    return percent(num)
+
 def dollars(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -61,15 +77,9 @@ data = df.iloc[[0]]
 current = data[current_col].iloc[0]
 goal = data[goal_col].iloc[0]
 
-if '$' in current_col or '$' in goal_col:
-  current_formatted = dollars(current)
-  goal_formatted = dollars(goal)
-elif '%' in current_col or '%' in goal_col:
-  current_formatted = percent(current)
-  goal_formatted = percent(goal)
-else:
-  current_formatted = abbrev(current)
-  goal_formatted = abbrev(goal)
+formatter = get_formatter(current_col)
+current_formatted = format(current, formatter)
+goal_formatted = format(goal, formatter)
 
 pct = 1.0 * current / goal
 

@@ -53,6 +53,15 @@ data = df.iloc[[0]]
 current = data[current_col].iloc[0]
 goal = data[goal_col].iloc[0]
 
+if '$' in current_col or '$' in goal_col:
+  current_formatted = dollars(current)
+  goal_formatted = dollars(goal)
+elif '%' in current_col or '%' in goal_col:
+  current_formatted = percent(current)
+  goal_formatted = percent(goal)
+else:
+  current_formatted = 
+
 pct = 1.0 * current / goal
 
 

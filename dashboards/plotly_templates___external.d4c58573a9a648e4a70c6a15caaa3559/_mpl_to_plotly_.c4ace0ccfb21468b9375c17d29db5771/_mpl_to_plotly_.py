@@ -11,13 +11,14 @@ import plotly.tools as tls
 x =  np.linspace(np.pi, 3*np.pi, 1000)
 sinx = np.sin(x)
 logx = np.log(x)
-# Creating the matplotlib graph..
+
+# matplotlib object, not interactive
 mpl_fig = plt.figure()
 ax = mpl_fig.add_subplot(111)
 ax.plot(x, sinx)
 ax.set_title('A Sine Curve')
 
-# periscope.output(mpl_fig)
-
+# plotly object, interactive!
 plotly_fig = tls.mpl_to_plotly(mpl_fig)
+
 periscope.plotly(plotly_fig)

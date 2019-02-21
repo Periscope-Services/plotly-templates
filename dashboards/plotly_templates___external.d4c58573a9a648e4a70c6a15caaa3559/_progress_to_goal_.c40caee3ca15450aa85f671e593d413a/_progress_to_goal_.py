@@ -13,6 +13,14 @@ def dollars(num):
     num /= 1000.0
   return '${}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+def abbrev(num):
+  num = float('{:.3g}'.format(float(num)))
+  magnitude = 0
+  while abs(num) >= 1000:
+    magnitude += 1
+    num /= 1000.0
+  return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
+
 def percent(pct):
   return str(int(round(pct*100))) + '%'
 
@@ -60,7 +68,8 @@ elif '%' in current_col or '%' in goal_col:
   current_formatted = percent(current)
   goal_formatted = percent(goal)
 else:
-  current_formatted = 
+  current_formatted = abbrev(current)
+  goal_formatted = abbrev(goal)
 
 pct = 1.0 * current / goal
 
@@ -95,7 +104,7 @@ layout = go.Layout(
       'y': 0.55,
       'ax': 0,
       'ay': 0,
-      'text': style_text(percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + dollars(goal), font_size='18px')
+      'text': style_text(percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
     },
     {
       'x': x,
@@ -103,7 +112,7 @@ layout = go.Layout(
       'ax': xsign * 10,
       'ay': ysign * 10,
     	'arrowcolor': 'rgba(0,0,0,0)',
-      'text': style_text(dollars(current), font_size='14px', font_weight='bold')
+      'text': style_text(current_formatted, font_size='14px', font_weight='bold')
     }
   ]
 )

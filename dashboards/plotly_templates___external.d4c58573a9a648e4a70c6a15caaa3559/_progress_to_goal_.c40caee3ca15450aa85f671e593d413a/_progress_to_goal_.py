@@ -45,10 +45,14 @@ def rgba_from_hex(hex, alpha):
   return f'rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})'
 
 color = '#1c6cab'
-data = row_as_tuple(df.iloc[[0]])
+
+df.columns = [c.upper() for c in df.columns]
+current_col = [c for c in df.columns 
+data = df.iloc[[0]]
 current = data.current
 goal = data.goal
 pct = 1.0 * current / goal
+
 
 donut = go.Pie(
  	values = [current, goal - current if goal > current else 0],

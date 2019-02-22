@@ -149,7 +149,7 @@ else:
     margin={
       'l': 0,
       'r': 0,
-      't': 10,
+      't': 40,
       'b': 10
     },
     annotations=[

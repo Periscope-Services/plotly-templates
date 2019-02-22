@@ -45,7 +45,7 @@ def pretty_percent(pct):
   if fmt_pct == '100%':
     fmt_pct = '💯'
   if pct >= 1:
-    fmt_pct = f'🎊 {fmt_pct} 🎉'
+    fmt_pct = f'🎊<br>{fmt_pct}'
   return fmt_pct
 
 def number_overlay(text):

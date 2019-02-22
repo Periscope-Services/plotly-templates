@@ -91,7 +91,7 @@ goal_formatted = format(goal, formatter)
 
 pct = 1.0 * current / goal
 if pct > 1:
-  color = '#37bf8d'
+  color = '#00be11'
 
 
 donut = go.Pie(

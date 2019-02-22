@@ -76,18 +76,34 @@ def rgba_from_hex(hex, alpha):
   rgb = rgb_from_hex(hex)
   return f'rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})'
 
-def rect(x0,y0,x1,y1,color,border=True):
+def rect(x0,y0,x1,y1,fillcolor = None, bordercolor = None):
   return {
     'type': 'rect',
     'xref': 'x',
     'yref': 'y',
-    'fillcolor': color,
+    'fillcolor': fillcolor if fillcolor else '#ffffff',
               'x0': x0,
               'y0': y0,
               'x1': x1,
               'y1': y1,
               'line': {
-                  'color': color if border else 'rgba(0,0,0,0)',
+                  'color': bordercolor if bordercolor else 'rgba(0,0,0,0)',
+              }
+  }
+
+def circle(x0,y0,x1,y1,fillcolor=None,bordercolor=None,borderwidth=1):
+  return {
+    'type': 'circle',
+    'xref': 'x',
+    'yref': 'y',
+    'fillcolor': fillcolor if fillcolor else '#ffffff',
+              'x0': x0,
+              'y0': y0,
+              'x1': x1,
+              'y1': y1,
+              'line': {
+                  'color': bordercolor if bordercolor else 'rgba(0,0,0,0)',
+                	'width': borderwidth
               }
   }
 
@@ -174,12 +190,15 @@ shapes = []
 #             }
 # })
 
+shapes.append(rect(0,0,3,1,fillcolor=None,bordercolor='blue'))
+shapes.append(circle(-.2,-.2,1.2,1.2,fillcolor='rgba(0,0,0,0)',bordercolor='blue',borderwidth=28))
+
 layout = go.Layout(
   xaxis={'range': [-1,4], 'autorange':False},
   yaxis={'range': [-1,4], 'autorange':False},
   shapes=shapes
 )
 
-fig = dict(data=[go.Scatter(x=[0],y=[0])], layout=layout)
+fig = dict(data=[go.Scatter(x=[.5],y=[.5])], layout=layout)
 
 periscope.plotly(fig)

@@ -147,8 +147,8 @@ else:
       'zeroline': False
     },
     margin={
-      'l': 0,
-      'r': 0,
+      'l': 10,
+      'r': 10,
       't': 40,
       'b': 10
     },

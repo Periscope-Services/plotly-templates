@@ -146,6 +146,12 @@ else:
       'showgrid': False, 
       'zeroline': False
     },
+    margin={
+      'l': 0,
+      'r': 0,
+      't': 10,
+      'b': 10
+    },
     annotations=[
       {
         'x': statistics.median(df.index),

@@ -120,7 +120,10 @@ else:
     x=df.index,
     y=df[kpi_col],
     text=df['DATE'],
-    hoverinfo='text+y'
+    hoverinfo='text+y',
+    line={
+      'color': color
+    }
   )
   
   dates = list(df['DATE'])

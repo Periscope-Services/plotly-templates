@@ -40,6 +40,14 @@ def abbrev(num):
 def percent(pct):
   return str(int(round(pct*100))) + '%'
 
+def pretty_percent(pct):
+  fmt_pct = percent(pct)
+  if fmt_pct == '100%':
+    fmt_pct = '💯'
+  if pct >= 1:
+    fmt_pct = f'🎊 {fmt_pct} 🎉'
+  return fmt_pct
+
 def number_overlay(text):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True, autorange=False)
   annotation = dict(x=0, y=0, ax=0, ay=0, text=text)
@@ -116,7 +124,7 @@ layout = go.Layout(
       'y': 0.55,
       'ax': 0,
       'ay': 0,
-      'text': style_text(percent(pct) if percent(pct) != '100%' else '🎊 💯 🎉', font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
+      'text': style_text(pretty_percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
     },
     {
       'x': x,

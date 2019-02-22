@@ -33,7 +33,7 @@ with
       1
   )
 select
-   sum(revenue) as "current_$"
+    sum(revenue) as "current_$"
   , sum(goal) as "goal_$"
 from
   mtd_sales

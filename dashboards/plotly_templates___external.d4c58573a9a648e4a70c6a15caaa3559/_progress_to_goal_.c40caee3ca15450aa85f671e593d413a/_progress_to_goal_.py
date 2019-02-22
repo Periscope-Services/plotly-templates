@@ -116,7 +116,7 @@ layout = go.Layout(
       'y': 0.55,
       'ax': 0,
       'ay': 0,
-      'text': style_text(percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
+      'text': style_text(percent(pct) if percent(pct) != '100%' else '🎊  💯  🎉', font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
     },
     {
       'x': x,

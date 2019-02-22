@@ -42,8 +42,8 @@ def percent(pct):
 
 def pretty_percent(pct):
   fmt_pct = percent(pct)
-  if fmt_pct == '100%':
-    fmt_pct = '💯'
+#   if fmt_pct == '100%':
+#     fmt_pct = '💯'
   if pct >= 1:
     fmt_pct = f'🎊<br><br>{fmt_pct}'
   return fmt_pct

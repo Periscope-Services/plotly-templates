@@ -111,9 +111,9 @@ else:
   color = gradient(percentage_change, [-.25, .25], ['#ff0000', '#00be11'])
   
   text = (
-    style_text(format(current_val, formatter), font_size='50px', font_weight='bold') +
+    style_text(format(current_val, formatter), font_size='32px', font_weight='bold') +
     '<br><br>' +
-    style_text(kpi_change, font_size='16px', color=color)
+    style_text(kpi_change, font_size='12px', color=color)
   )
 	
   trace = go.Scatter(

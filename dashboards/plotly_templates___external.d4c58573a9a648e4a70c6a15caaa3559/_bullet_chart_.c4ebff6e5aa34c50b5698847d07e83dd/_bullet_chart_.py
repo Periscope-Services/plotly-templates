@@ -20,4 +20,11 @@ fig = ff.create_bullet(
         width=800,
 )
 
+fig['layout']['margin'] = {
+  't': 20,
+  'b': 10,
+  'l': 10,
+  'r': 10
+}
+
 periscope.plotly(fig)

@@ -23,8 +23,9 @@ fig = ff.create_bullet(
 fig['layout']['margin'] = {
   't': 40,
   'b': 20,
-  'l': 20,
-  'r': 20
+  'l': 40,
+  'r': 40
 }
+fig['layout']['title'] = None
 
 periscope.plotly(fig)

@@ -21,7 +21,7 @@ ax.set_title('A Sine Curve')
 # plotly object, interactive!
 plotly_fig = tls.mpl_to_plotly(mpl_fig)
 plotly_fig['layout']['margin']={
-  'l': 5,
+  'l': 10,
   'r': 5
 }
 

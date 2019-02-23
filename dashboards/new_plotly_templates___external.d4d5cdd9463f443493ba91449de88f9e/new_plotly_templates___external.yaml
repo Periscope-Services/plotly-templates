@@ -1,0 +1,5 @@
+dashboard_preferences:
+  settings:
+    owner: rfriedland@periscopedata.com
+disable_filters: false
+display_name: New Plotly Templates - External

@@ -24,7 +24,7 @@ plotly_fig['layout']['margin'] = {
   'l': 10,
   'r': 5,
   't': 20,
-  'b': 10
+  'b': 20
 }
 
 periscope.plotly(plotly_fig)

@@ -147,7 +147,8 @@ else:
       'ticks': '', 
       'showticklabels': False, 
       'showgrid': False, 
-      'zeroline': False
+      'zeroline': False,
+      'fixedrange': True
     },
     margin={
       'l': 10,

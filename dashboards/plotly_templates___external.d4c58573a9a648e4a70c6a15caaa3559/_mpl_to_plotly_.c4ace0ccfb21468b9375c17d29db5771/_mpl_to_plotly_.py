@@ -22,7 +22,9 @@ ax.set_title('A Sine Curve')
 plotly_fig = tls.mpl_to_plotly(mpl_fig)
 plotly_fig['layout']['margin'] = {
   'l': 10,
-  'r': 5
+  'r': 5,
+  't': 20,
+  'b': 10
 }
 
 periscope.plotly(plotly_fig)

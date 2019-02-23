@@ -26,6 +26,11 @@ fig['layout']['margin'] = {
   'l': 40,
   'r': 40
 }
+
 fig['layout']['title'] = None
+
+for i in range(0, len(data)):
+  axis = 'xaxis' + ('' if i==0 else str(i+1))
+  fig['layout'][axis]['ticks'] = ''
 
 periscope.plotly(fig)

@@ -1,0 +1,11 @@
+chart_type: Table
+code_language: python3.6
+database_name: example_database
+display_name: '[FUNNEL 2]'
+encrypted_definition: Qg8qvswep50gEl+N5cfYXARFznA7Io7bFHGaGnseVy5mHQQfz9Rh3/h+oJRACuwo2/oiS30uWFwnSAGLL+ctwzqY16j0iyQJner4XdBK5owxDvQ1HdRtc0IIqsrkxn9QkadPZDpOzQFSGcGKKVCO1C29Tw4kALhkzgGU63GvzN4=
+position:
+  left: 0
+  top: 75
+size:
+  height: 10
+  width: 30

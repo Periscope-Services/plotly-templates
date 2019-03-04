@@ -23,4 +23,4 @@ select
 from
   cte
 order by
-  2 desc
+  2

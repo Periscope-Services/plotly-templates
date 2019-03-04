@@ -2,10 +2,10 @@ import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
 
-def label(idx, phase, value, maximum):
+def label(idx, phase, value, max_value, max_idx):
   label = f'<b>{phase}</b> - {"{:,}".format(value)}'
-  if idx > 0:
-    label += f'<br>{"{:.0%}".format(1.0 * value/maximum)}'
+  if idx != max_idx:
+    label += f'<br>{"{:.0%}".format(1.0 * value/max_value)}'
   return label
 
 df.columns = [c.lower() for c in df.columns]
@@ -62,7 +62,7 @@ layout = go.Layout(
       'y': row[phase_col],
       'ax': 0,
       'ay': 0,
-      'text': label(idx,row[phase_col],row[value_col],maximum)
+      'text': label(idx,row[phase_col],row[value_col],maximum, len(df) - 1)
     } for idx, row in df.iterrows()
   ]
 )

@@ -2,6 +2,12 @@ import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
 
+def label(idx, phase, value, maximum):
+  label = f'<b>{phase}</b> - {"{:,}".format(value)}'
+  if idx > 0:
+    label += f'<br>{"{:.0%}".format(1.0 * value/maximum)}'
+  return label
+
 df.columns = [c.lower() for c in df.columns]
 phase_col = 'phase'
 value_col = 'value'
@@ -14,7 +20,6 @@ buffer = go.Bar(
   marker = {
     'color': 'rgba(0,0,0,0)'
   },
-  text = 
   orientation = 'h'
 )
 
@@ -50,7 +55,16 @@ layout = go.Layout(
     'showgrid': False,
     'zeroline': False,
     'fixedrange': True
-  }
+  },
+  annotations = [
+    {
+      'x': 1.0 * maximum / 2,
+      'y': row[phase_col],
+      'ax': 0,
+      'ay': 0,
+      'text': label(idx,row[phase_col],row[value_col],maximum)
+    } for idx, row in df.iterrows()
+  ]
 )
 
 fig = {

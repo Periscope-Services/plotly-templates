@@ -14,6 +14,7 @@ buffer = go.Bar(
   marker = {
     'color': 'rgba(0,0,0,0)'
   },
+  text = 
   orientation = 'h'
 )
 
@@ -27,7 +28,29 @@ data = [buffer, funnel, buffer]
 
 layout = go.Layout(
   barmode = 'stack',
-  showlegend = False
+  showlegend = False,
+  margin = {
+    't': 0,
+    'l': 0,
+    'r': 0,
+    'b': 0
+  },
+  xaxis = {
+    'showline': False,
+    'ticks': '',
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False,
+    'fixedrange': True
+  },
+  yaxis = {
+    'showline': False,
+    'ticks': '',
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False,
+    'fixedrange': True
+  }
 )
 
 fig = {

@@ -32,7 +32,7 @@ select
   , case
     when random() > .4
       then 'Made a purchase'
-    else 'Did not make a purchase'
+    else 'No purchase'
   end
   , 3
 from

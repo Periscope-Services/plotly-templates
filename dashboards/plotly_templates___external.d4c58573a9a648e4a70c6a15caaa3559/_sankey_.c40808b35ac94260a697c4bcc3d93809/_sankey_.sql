@@ -12,7 +12,7 @@ with
 select
   u.id as unique_id
   , source as stage_name
-  , dateadd(day, -100, created_at) as sort
+  , 1 as sort
 from
   u
   inner join periscope_views.users on
@@ -21,7 +21,7 @@ union all
 select
   u.id
   , platform
-  , created_at
+  , 2
 from
   u
   inner join periscope_views.users on
@@ -29,12 +29,11 @@ from
 union all
 select
   u.id
-  , 'Made a purchase'
-  , dateadd(day, 100, min(created_at))
+  , case
+    when random() > .4
+      then 'Made a purchase'
+    else 'Did not make a purchase'
+  end
+  , 3
 from
   u
-  inner join periscope_views.purchases on
-    u.id = purchases.user_id
-group by
-  1
-  , 2

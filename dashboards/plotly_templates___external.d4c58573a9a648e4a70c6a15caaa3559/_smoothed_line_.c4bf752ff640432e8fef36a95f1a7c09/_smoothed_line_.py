@@ -31,7 +31,7 @@ layout = layout = {
     'zeroline': False
   },
   'xaxis': {
-    'title': 'Week',
+#     'title': 'Week',
     'showline': False, 
     'ticks': '', 
 #     'showticklabels': False,

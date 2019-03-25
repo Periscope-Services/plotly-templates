@@ -54,10 +54,8 @@ df_agg = df_agg.query('is_circular == False')
 
 priors = df_agg['prior_stage_index']
 ends = stages.query('stage_index not in @priors')
-print(ends)
 
 df_agg['color'] = df_agg.apply(lambda r: f'rgba({rgb_from_hex(color(r["prior_stage_index"]))},{.25 if r["stage_index"] in ends["stage_index"] else .25})', axis=1)
-print(df_agg)
     
 data=dict(
   type='sankey',

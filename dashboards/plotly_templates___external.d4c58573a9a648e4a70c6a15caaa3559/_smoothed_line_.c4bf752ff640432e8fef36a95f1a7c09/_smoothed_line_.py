@@ -11,7 +11,8 @@ line = go.Scatter(
   line = {
     'shape': 'spline',
     'smoothing': 1.3
-  }
+  },
+  fill='tozeroy'
 )
 
 layout = layout = {

@@ -23,10 +23,20 @@ layout = layout = {
     't': 0
   },
   'yaxis': {
-    'title': 'Signups'
+    'title': 'Signups',
+    'showline': False, 
+    'ticks': '', 
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False
   },
   'xaxis': {
-    'title': 'Week'
+    'title': 'Week',
+    'showline': False, 
+    'ticks': '', 
+#     'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False
   }
 }
 

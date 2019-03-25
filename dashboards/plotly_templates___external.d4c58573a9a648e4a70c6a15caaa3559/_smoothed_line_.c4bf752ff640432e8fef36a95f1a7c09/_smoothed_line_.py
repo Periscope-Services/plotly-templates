@@ -14,7 +14,20 @@ line = go.Scatter(
   }
 )
 
-layout = go.Layout()
+layout = layout = {
+  'margin': {
+    'l': 50,
+    'r': 0,
+    'b': 50,
+    't': 0
+  },
+  'yaxis': {
+    'title': 'Signups'
+  },
+  'xaxis': {
+    'title': 'Week'
+  }
+}
 
 fig = dict(data = [line], layout = layout)
 

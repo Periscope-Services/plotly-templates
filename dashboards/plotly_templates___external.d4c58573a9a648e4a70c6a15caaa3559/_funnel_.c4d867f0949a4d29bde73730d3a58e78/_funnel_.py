@@ -134,4 +134,4 @@ layout = go.Layout(
 fig = go.Figure(data=data, layout=layout)
 
 # For Python 2 & 3, pass configs into plotly (i.e `plotly_output(figure,config={'displayModeBar':True})
-periscope.plotly(fig, config={'displayModeBar':True})
+periscope.plotly(fig, config={'displayModeBar':False})

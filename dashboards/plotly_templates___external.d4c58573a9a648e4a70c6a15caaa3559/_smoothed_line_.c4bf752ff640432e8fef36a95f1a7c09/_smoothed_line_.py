@@ -23,7 +23,7 @@ layout = layout = {
     't': 0
   },
   'yaxis': {
-    'title': 'Signups',
+#     'title': 'Signups',
     'showline': False, 
     'ticks': '', 
     'showticklabels': False,

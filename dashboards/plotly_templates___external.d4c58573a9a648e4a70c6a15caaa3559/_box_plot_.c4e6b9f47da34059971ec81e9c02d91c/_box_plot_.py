@@ -57,7 +57,8 @@ layout = {
   },
   'xaxis': {
     'title': f'{", ".join([column_name(col) for col in series_columns])}'
-  }
+  },
+  'showlegend': False
 }
 
 fig = dict(data=data, layout=layout)

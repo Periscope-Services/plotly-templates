@@ -1,31 +1,27 @@
 select
-  'a' as x_day
+  'Monday' as x_day
   , 80 as y_tickets
-union
+union all
 select
-  'b'
+  'Tuesday'
   , 7
-union
+union all
 select
-  'c'
+  'Wednesday'
   , 6
-union
+union all
 select
-  'd'
+  'Thursday'
   , 5
-union
+union all
 select
-  'e'
+  'Friday'
   , 4
-union
+union all
 select
-  'f'
+  'Saturday'
   , 3
-union
+union all
 select
-  'g'
+  'Sunday'
   , 2
-union
-select
-  'h'
-  , 1

@@ -35,9 +35,9 @@ data = []
 # if no series -- create the traces for each y value and only display the first one
 if not has_series:
   trace = go.Scatter(
-	x=df[x_column],
+	  x=df[x_column],
     y=df[y_column],
-      name=column_name(y_column)
+    name=column_name(y_column)
   )
   data.append(trace)
     
@@ -56,10 +56,7 @@ else:
 layout = {
   'showlegend': showlegend,
   'yaxis': {
-#     'tickformat': format(y_column),
-#     'hoverformat': format(y_column),
     'type': 'log',
-    'autorange': True,
     'title': column_name(y_column)
   },
   'xaxis': {

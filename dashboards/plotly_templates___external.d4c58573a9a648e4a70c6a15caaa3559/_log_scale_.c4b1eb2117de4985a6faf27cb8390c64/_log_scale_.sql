@@ -1,6 +1,6 @@
 select
   'a' as x_day
-  , 8 as y_tickets
+  , 80 as y_tickets
 union
 select
   'b'

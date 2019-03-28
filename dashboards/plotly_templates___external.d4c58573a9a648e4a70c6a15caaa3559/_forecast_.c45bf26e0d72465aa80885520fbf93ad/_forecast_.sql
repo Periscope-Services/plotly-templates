@@ -11,7 +11,7 @@ with
   )
 select
   ds
-  , y
+  , y as y_signups
   , case
     when rownum = 1
       then '[aggregation]'

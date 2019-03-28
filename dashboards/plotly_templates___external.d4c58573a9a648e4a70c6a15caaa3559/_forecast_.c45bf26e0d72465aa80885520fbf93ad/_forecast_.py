@@ -5,6 +5,8 @@
 
 #    3) aggregation: the level of date aggregation. can reference the [aggregation] filter. allowable values: hour, day, week, month, quarter, year
 
+#   4) in_progress: true if the value is for the current period, false if it's a prior period
+
 import pandas as pd 
 from fbprophet import Prophet
 import plotly.plotly as py

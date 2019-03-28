@@ -71,29 +71,20 @@ yhat_lower = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat_lower'],
   marker = {
-    'color': '#9aceed'
-  },
-  line = {
-    'width': 1
+    'color': 'rgba(0,0,0,0)'
   },
   showlegend = False,
   hoverinfo = 'none',
-  mode = 'lines'
 )
 
 yhat_upper = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat_upper'],
   fill='tonexty',
-  marker = {
-    'color': '#9aceed'
-  },
-  line = {
-    'width': 1
-  },
+  fillcolor = '#9aceed',
   name = 'Margin of Error',
   hoverinfo = 'none',
-  mode = 'lines'
+  mode = 'none'
 )
 
 actual = go.Scatter(

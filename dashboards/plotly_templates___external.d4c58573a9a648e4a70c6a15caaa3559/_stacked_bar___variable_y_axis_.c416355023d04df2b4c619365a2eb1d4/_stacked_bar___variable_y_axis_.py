@@ -9,11 +9,11 @@ def column_name(column):
 
 def format(column):
   if column.startswith('Y$'):
-    return '$s'
+    return '$.3s'
   elif column.startswith('Y%'):
     return '.0%'
   else:
-    return 's'
+    return '.3s'
   
 def unique_vals(df, column):
   return df.groupby(column).size().reset_index()[column]

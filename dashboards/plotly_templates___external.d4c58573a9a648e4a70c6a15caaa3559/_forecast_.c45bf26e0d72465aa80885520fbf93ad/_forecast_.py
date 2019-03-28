@@ -16,18 +16,21 @@ m.fit(df[['ds','y']])
 
 agg = aggregation(df)
 
-future = m.make_future_dataframe(periods=365)
 if agg == 'hour':
   future = m.make_future_dataframe(periods=72, freq='H')
 elif agg == 'day':
-  future = future
+	future = m.make_future_dataframe(periods=30)
 elif agg == 'week':
+  future = m.make_future_dataframe(periods=365)
   future = future[future['ds'].dt.weekday == 0]
 elif agg == 'month':
+  future = m.make_future_dataframe(periods=365)
   future = future[future['ds'].dt.day == 1]
 elif agg == 'quarter':
+  future = m.make_future_dataframe(periods=365)
   future = future[(future['ds'].dt.month % 3 == 1) & (future['ds'].dt.day == 1)]
 elif agg == 'year':
+  future = m.make_future_dataframe(periods=731)
   future = future[(future['ds'].dt.month == 1) & (future['ds'].dt.day == 1)]
 
 forecast = m.predict(future)

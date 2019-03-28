@@ -14,7 +14,6 @@ df['y'] = pd.to_numeric(df['y'])
 m = Prophet()
 m.fit(df[['ds','y']])
 
-
 agg = aggregation(df)
 
 future = m.make_future_dataframe(periods=365)

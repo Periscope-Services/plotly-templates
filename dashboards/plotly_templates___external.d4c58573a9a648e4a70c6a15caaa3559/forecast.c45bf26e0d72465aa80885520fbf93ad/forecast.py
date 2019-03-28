@@ -24,7 +24,9 @@ elif agg == 'month':
   future = future[future['ds'].dt.day == 1]
 elif agg == 'quarter':
   future = future[(future['ds'].dt.month % 3 == 1) & (future['ds'].dt.day == 1)]
-  
+elif agg == 'year':
+  future = future[(future['ds'].dt.month == 1) & (future['ds'].dt.day == 1)]
+
 forecast = m.predict(future)
 
 

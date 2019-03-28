@@ -59,7 +59,7 @@ yhat = go.Scatter(
   y = forecast['yhat'],
   mode = 'lines',
   marker = {
-    'color': '#0472B2'
+    'color': '#3bbed7'
   },
   line = {
     'width': 3
@@ -81,7 +81,7 @@ yhat_upper = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat_upper'],
   fill='tonexty',
-  fillcolor = '#b7def7',
+  fillcolor = '#e7eaf1',
   name = 'Margin of Error',
   hoverinfo = 'none',
   mode = 'none'

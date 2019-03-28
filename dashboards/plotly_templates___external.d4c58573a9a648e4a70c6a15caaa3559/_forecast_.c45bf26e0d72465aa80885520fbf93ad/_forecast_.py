@@ -7,11 +7,11 @@ import datetime
 
 def format(column):
   if column.startswith('y$'):
-    return '$s'
+    return '$.3s'
   elif column.startswith('y%'):
     return '.0%'
   else:
-    return 's'
+    return '.3s'
   
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()

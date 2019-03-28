@@ -23,8 +23,7 @@ elif agg == 'week':
 elif agg == 'month':
   future = future[future['ds'].dt.day == 1]
 elif agg == 'quarter':
-  future = future[future['ds'].dt.month % 3 == 1 and future['ds'].dt.day == 1]
-
+  future = future[(future['ds'].dt.month % 3 == 1) & (future['ds'].dt.day == 1)]
   
 forecast = m.predict(future)
 

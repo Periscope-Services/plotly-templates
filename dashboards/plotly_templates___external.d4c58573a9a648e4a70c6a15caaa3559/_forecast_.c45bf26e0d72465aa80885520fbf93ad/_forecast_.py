@@ -17,7 +17,7 @@ def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
 def aggregation(df):
-  return df['aggregation'].iloc[0]
+  return df['aggregation'].iloc[0].lower()
 
 df.columns = [c.lower() for c in df.columns]
 y_col = [c for c in df.columns if c.startswith('y')][0]

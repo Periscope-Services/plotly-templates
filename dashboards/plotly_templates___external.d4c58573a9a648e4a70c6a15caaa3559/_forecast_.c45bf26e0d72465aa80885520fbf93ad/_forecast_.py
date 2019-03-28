@@ -103,13 +103,13 @@ actual = go.Scatter(
 
 layout = go.Layout(
   yaxis = {
-    'title': column_name(y_col),
+    'title': f'<b>{column_name(y_col)}</b>',
     'tickformat': format(y_col),
     'hoverformat': format(y_col)
   },
   hovermode = 'x',
   xaxis = {
-    'title': agg.title()
+    'title': f'<b>{agg.title()}</b>'
   },
   margin = {
     't': 40,

@@ -1,4 +1,10 @@
-# SQL output is imported as a dataframe variable called 'df'
+# SQL output should have 3 columns:
+#    1) ds: the date or datetime
+
+#    2) y_value: the value to forecast. name it whatever makes sense, e.g. y_signups, y$_revenue, etc. add the dollar sign ($) to format in dollars.
+
+#    3) aggregation: the level of date aggregation. can reference the [aggregation] filter. allowable values: hour, day, week, month, quarter, year
+
 import pandas as pd 
 from fbprophet import Prophet
 import plotly.plotly as py

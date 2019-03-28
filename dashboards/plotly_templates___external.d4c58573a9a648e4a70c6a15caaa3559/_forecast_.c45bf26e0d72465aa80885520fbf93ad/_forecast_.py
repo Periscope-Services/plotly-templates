@@ -31,7 +31,7 @@ y_col = [c for c in df.columns if c.startswith('y')][0]
 df['y'] = pd.to_numeric(df[y_col])
 
 m = Prophet()
-m.fit(df[['ds','y']])
+m.fit(df.query('in_progress == False')[['ds','y']])
 
 agg = aggregation(df)
 

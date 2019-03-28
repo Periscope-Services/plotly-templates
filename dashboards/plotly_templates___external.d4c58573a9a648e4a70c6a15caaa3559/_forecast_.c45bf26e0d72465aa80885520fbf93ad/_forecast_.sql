@@ -1,5 +1,5 @@
 /*****************************************
-SQL output should have 3 columns:
+SQL output should have 4 columns:
    1) ds: the date or datetime
 
    2) y_value: the value to forecast. name it whatever makes sense, e.g. y_signups, y$_revenue, etc. add the dollar sign ($) to format in dollars.

@@ -1,4 +1,3 @@
-from collections import namedtuple
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
@@ -59,11 +58,6 @@ def number_overlay(text):
 def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'
-
-def row_as_tuple(df):
-  df.columns = [c.lower() for c in df.columns]
-  dictionary = df.to_dict(orient='records')[0]
-  return namedtuple('Tuple', dictionary.keys())(*dictionary.values())
 
 def rgb_from_hex(hex):
   h = hex.lstrip('#')

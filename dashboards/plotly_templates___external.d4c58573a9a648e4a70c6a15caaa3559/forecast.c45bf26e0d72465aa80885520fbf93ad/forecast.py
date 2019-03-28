@@ -14,17 +14,15 @@ df['y'] = pd.to_numeric(df['y'])
 m = Prophet()
 m.fit(df[['ds','y']])
 
+future = m.make_future_dataframe(periods=365)
 agg = aggregation(df)
 if agg == 'day':
-  future = m.make_future_dataframe(periods=365)
+  future = future
 elif agg == 'week':
-  future = m.make_future_dataframe(periods=365)
   future = future[future['ds'].dt.weekday == 0]
 elif agg == 'month':
-  future = m.make_future_dataframe(periods=365)
   future = future[future['ds'].dt.day == 1]
 
-print(future)
   
 forecast = m.predict(future)
 

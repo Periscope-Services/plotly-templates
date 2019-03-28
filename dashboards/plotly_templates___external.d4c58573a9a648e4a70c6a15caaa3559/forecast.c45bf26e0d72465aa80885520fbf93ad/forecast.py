@@ -3,6 +3,7 @@ import pandas as pd
 from fbprophet import Prophet
 import plotly.plotly as py
 import plotly.graph_objs as go
+import datetime
 
 def aggregation(df):
   return df['aggregation'].iloc[0]
@@ -14,13 +15,17 @@ m = Prophet()
 m.fit(df[['ds','y']])
 
 agg = aggregation(df)
-if agg = 'day':
+if agg == 'day':
   future = m.make_future_dataframe(periods=365)
-elif agg = 'week':
+elif agg == 'week':
   future = m.make_future_dataframe(periods=365)
-elif agg = 'month':
-  future = m.make_future_dataframe(periods=12, freq='M')
+  future = future[future['ds'].dt.weekday == 0]
+elif agg == 'month':
+  future = m.make_future_dataframe(periods=365)
+  future = future[future['ds'].dt.day == 1]
 
+print(future)
+  
 forecast = m.predict(future)
 
 

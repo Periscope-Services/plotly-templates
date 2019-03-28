@@ -33,6 +33,76 @@ elif agg == 'year':
 
 forecast = m.predict(future)
 
+yhat = go.Scatter(
+  x = forecast['ds'],
+  y = forecast['yhat'],
+  mode = 'lines',
+  marker = {
+    'color': '#0472B2'
+  },
+  line = {
+    'width': 3
+  },
+  name = 'Forecast',
+)
 
-# Use Periscope to visualize a dataframe, text, or an image by passing data to periscope.table(), periscope.text(), or periscope.image() respectively.
-periscope.table(df)
+yhat_lower = go.Scatter(
+  x = forecast['ds'],
+  y = forecast['yhat_lower'],
+  marker = {
+    'color': '#9aceed'
+  },
+  line = {
+    'width': 1
+  },
+  showlegend = False,
+  hoverinfo = 'none',
+  mode = 'lines'
+)
+
+yhat_upper = go.Scatter(
+  x = forecast['ds'],
+  y = forecast['yhat_upper'],
+  fill='tonexty',
+  marker = {
+    'color': '#9aceed'
+  },
+  line = {
+    'width': 1
+  },
+  name = 'Margin of Error',
+  hoverinfo = 'none',
+  mode = 'lines'
+)
+
+actual = go.Scatter(
+  x = df['ds'],
+  y = df['y'],
+  mode = 'markers',
+  marker = {
+    'color': '#000000',
+    'size': 4
+  },
+  name = 'Actual'
+)
+
+layout = go.Layout(
+#   yaxis = {
+#     'title': 'ARR',
+#     'tickformat': '$s',
+#     'hoverformat': '$s'
+#   },
+  hovermode = 'x',
+  xaxis = {
+    'title': agg.title()
+  },
+  margin = {
+    't': 40,
+    'b': 50,
+    'l': 60,
+    'r': 10
+  }
+)
+data = [yhat_lower, yhat_upper, yhat, actual]
+fig = dict(data = data, layout = layout)
+periscope.plotly(fig)

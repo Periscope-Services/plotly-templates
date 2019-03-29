@@ -134,6 +134,9 @@ layout = go.Layout(
     'b': 50,
     'l': 60,
     'r': 10
+  },
+  legend = {
+    'bgcolor': 'rgba(0,0,0,0)'
   }
 )
 data = [yhat_lower, yhat_upper, yhat, actual]

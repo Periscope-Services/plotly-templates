@@ -99,7 +99,7 @@ yhat_upper = go.Scatter(
   y = forecast['yhat_upper'],
   fill='tonexty',
   fillcolor = 'rgba(231, 234, 241,.75)',
-  name = 'Margin of Error',
+  name = 'Confidence',
   hoverinfo = 'none',
   mode = 'none'
 )

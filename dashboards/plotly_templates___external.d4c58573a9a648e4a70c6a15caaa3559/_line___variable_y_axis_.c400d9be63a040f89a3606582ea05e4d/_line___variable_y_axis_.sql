@@ -1,4 +1,5 @@
-/* x value prefixed with 'x'
+/* SQL output should have these columns:
+   x value prefixed with 'x'
    y value(s) prefixed with 'y' -- if $ or %, prefix with 'y$' or 'y%'
    series value(s) prefixed with 's'
 */

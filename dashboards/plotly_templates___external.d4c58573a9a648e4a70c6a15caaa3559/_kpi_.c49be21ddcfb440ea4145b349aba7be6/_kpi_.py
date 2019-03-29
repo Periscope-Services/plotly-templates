@@ -1,3 +1,7 @@
+# SQL output should have two columns:
+#   1) date
+#   2) kpi -- this is the KPI value to display. if it's a dollar or percentage value, call it kpi_$ or kpi_% to apply formatting
+
 from collections import namedtuple
 import pandas as pd
 import plotly.plotly as py

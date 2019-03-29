@@ -47,7 +47,6 @@ agg = aggregation(ds_col)
 df['y'] = pd.to_numeric(df[y_col])
 df['ds'] = df[ds_col]
 df['in_progress'] = df.apply(lambda x: in_progress(x['ds'], agg), axis=1)
-print(df.query('in_progress == True'))
 
 m = Prophet()
 m.fit(df.query('in_progress == False')[['ds','y']])

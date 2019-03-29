@@ -1,11 +1,8 @@
-# SQL output should have 4 columns:
-#    1) ds: the date or datetime
+# SQL output should have 2 columns:
+#    1) ds_aggregation: the date or datetime. name should be ds_hour, ds_day, ds_week, ds_month, ds_quarter, or ds_year. if you are using Periscope's aggregation filter, you can name it ds_[aggregation].
 
 #    2) y_value: the value to forecast. name it whatever makes sense, e.g. y_signups, y$_revenue, etc. add the dollar sign ($) to format in dollars.
 
-#    3) aggregation: the level of date aggregation. can reference the [aggregation] filter. allowable values: hour, day, week, month, quarter, year
-
-#   4) in_progress: true if the value is for the current period, false if it's a prior period
 
 import pandas as pd 
 from fbprophet import Prophet
@@ -24,18 +21,36 @@ def format(column):
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
-def aggregation(df):
-  return df['aggregation'].iloc[0].lower()
+def aggregation(ds_col):
+  return ds_col.split('_', 1)[1].lower()
+
+def in_progress(dt, agg):
+  now = datetime.datetime.now()
+  if agg == 'hour':
+    return (now.year == dt.year and now.month == dt.month and now.day == dt.day and now.hour == dt.hour)
+  elif agg == 'day':
+    return (now.year == dt.year and now.month == dt.month and now.day == dt.day)
+  elif agg == 'week':
+    return (now.year == dt.year and now.isocalendar()[1] == dt.isocalendar()[1])
+  elif agg == 'month':
+    return (now.year == dt.year and now.month == dt.month)
+  elif agg == 'quarter':
+    return (now.year == dt.year and int(now.month / 4) == int(dt.month / 4))
+  elif agg == 'year':
+    return (now.year == dt.year)
 
 df.columns = [c.lower() for c in df.columns]
 y_col = [c for c in df.columns if c.startswith('y')][0]
+ds_col = [c for c in df.columns if c.startswith('ds')][0]
+agg = aggregation(ds_col)
 
 df['y'] = pd.to_numeric(df[y_col])
+df['ds'] = df[ds_col]
+df['in_progress'] = df.apply(lambda x: in_progress(x['ds'], agg), axis=1)
+print(df.query('in_progress == True'))
 
 m = Prophet()
 m.fit(df.query('in_progress == False')[['ds','y']])
-
-agg = aggregation(df)
 
 if agg == 'hour':
   future = m.make_future_dataframe(periods=72, freq='H')

@@ -10,6 +10,8 @@ from fbprophet import Prophet
 import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
+from scipy.stats import boxcox
+from scipy.special import inv_boxcox
 
 def format(column):
   if column.startswith('y$'):
@@ -46,6 +48,7 @@ ds_col = [c for c in df.columns if c.startswith('ds')][0]
 agg = aggregation(ds_col)
 
 df['y'] = pd.to_numeric(df[y_col])
+df['y'], lam = boxcox(df['y'])
 df['ds'] = df[ds_col]
 df['in_progress'] = df.apply(lambda x: in_progress(x['ds'], agg), axis=1)
 
@@ -70,6 +73,7 @@ elif agg == 'year':
   future = future[(future['ds'].dt.month == 1) & (future['ds'].dt.day == 1)]
 
 forecast = m.predict(future)
+forecast[['yhat','yhat_upper','yhat_lower']] = forecast[['yhat','yhat_upper','yhat_lower']].apply(lambda x: inv_boxcox(x, lam))
 
 yhat = go.Scatter(
   x = forecast['ds'],
@@ -106,7 +110,7 @@ yhat_upper = go.Scatter(
 
 actual = go.Scatter(
   x = df['ds'],
-  y = df['y'],
+  y = df[y_col],
   mode = 'markers',
   marker = {
     'color': '#fffaef',

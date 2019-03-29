@@ -126,7 +126,7 @@ layout = go.Layout(
     'title': agg.title()
   },
   margin = {
-    't': 40,
+    't': 20,
     'b': 50,
     'l': 60,
     'r': 10

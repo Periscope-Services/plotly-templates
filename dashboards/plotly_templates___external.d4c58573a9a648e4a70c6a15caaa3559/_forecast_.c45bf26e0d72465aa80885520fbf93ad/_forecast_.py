@@ -109,8 +109,12 @@ actual = go.Scatter(
   y = df['y'],
   mode = 'markers',
   marker = {
-    'color': '#000000',
-    'size': 4
+    'color': '#fffaef',
+    'size': 4,
+    'line': {
+      'color': '#000000',
+      'width': .75
+    }
   },
   name = 'Actual'
 )

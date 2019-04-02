@@ -74,13 +74,15 @@ if current_pct > 0:
 elif current_pct < 0:
   direction = ',<br><br>down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg
   
+direction = style_text(direction, font_size = '16px')
+  
 fmt = get_formatter(y_col)
 summary = f'{column_name(y_col)} is <b>{format(current_val, formatter=fmt)}</b>{direction}.'
 
 big_text = go.Scatter(
   x = [0],
   y = [.15],
-  text = style_text(summary, font_size = '16px'),
+  text = style_text(summary, font_size = '20px'),
   textposition = 'middle center',
   mode = 'text',
   hoverinfo = 'none',

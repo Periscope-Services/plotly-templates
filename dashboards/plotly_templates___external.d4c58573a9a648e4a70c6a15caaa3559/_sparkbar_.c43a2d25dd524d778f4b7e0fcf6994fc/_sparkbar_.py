@@ -70,17 +70,17 @@ current_pct = current[pct_col].iloc[0]
 
 direction = ''
 if current_pct > 0:
-  direction = ',<br>up ' + percent(abs(current_pct)) + ' from last ' + agg
+  direction = ',<br>up <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
 elif current_pct < 0:
-  direction = ',<br>down ' + percent(abs(current_pct)) + ' from last ' + agg
+  direction = ',<br>down <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
   
 fmt = get_formatter(y_col)
-summary = f'{column_name(y_col)} is {format(current_val, formatter=fmt)}{direction}.'
+summary = f'{column_name(y_col)} is <b>{format(current_val, formatter=fmt)}</b>{direction}.'
 
 big_text = go.Scatter(
   x = [0],
   y = [.15],
-  text = style_text(summary, font_size = '16px', font_weight = 'bold'),
+  text = style_text(summary, font_size = '16px'),
   textposition = 'middle center',
   mode = 'text',
   hoverinfo = 'none',
@@ -123,7 +123,7 @@ layout = go.Layout(
     'ticks': ''
   },
   yaxis2 = {
-    'domain': [0.5, 1],
+    'domain': [0.75, 1],
     'range': [-1, 1],
     'fixedrange': True,
     'autorange': False,
@@ -141,7 +141,7 @@ layout = go.Layout(
     'showticklabels': False
   },
   yaxis = {
-    'domain': [0, 0.5],
+    'domain': [0, 0.75],
     'autorange': True,
     'hoverformat': tickformat(y_col),
     'fixedrange': True,

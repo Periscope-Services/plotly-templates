@@ -140,7 +140,7 @@ layout = go.Layout(
     'showgrid': False,
     'zeroline': False,
     'fixedrange': True,
-    'showticklabels': False
+#     'showticklabels': False
   },
   yaxis = {
     'domain': [0, 0.6],

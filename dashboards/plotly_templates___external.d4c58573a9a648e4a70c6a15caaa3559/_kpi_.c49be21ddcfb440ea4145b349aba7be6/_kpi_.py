@@ -1,3 +1,4 @@
+# PERISCOPE KPI CHART TEMPLATE
 # SQL output should have 2 columns:
 #    1) ds_aggregation: the date or datetime. name should be ds_hour, ds_day, ds_week, ds_month, ds_quarter, or ds_year. if you are using Periscope's aggregation filter, you can name it ds_[aggregation]
 
@@ -100,8 +101,8 @@ else:
   df.columns = [c.lower() for c in df.columns]
   y_col = [c for c in df.columns if c.startswith('y')][0]
   ds_col = [c for c in df.columns if c.startswith('ds')][0]
-  df[y_col] = pd.to_numeric(y_col)
-  df[ds_col] = pd.to_datetime(ds_col)
+  df[y_col] = pd.to_numeric(df[y_col])
+  df[ds_col] = pd.to_datetime(df[ds_col])
   agg = aggregation(ds_col)
 
   df.sort_values(by=[ds_col], inplace=True)

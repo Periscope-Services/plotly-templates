@@ -105,6 +105,9 @@ xsign = 1 if pct <= .5 else -1
 ysign = 1 if pct <= .5 else -1
 
 layout = go.Layout(
+ 	font = {
+    'color': '#000000'
+  },
   showlegend = False,
   margin = {
     't': 30,

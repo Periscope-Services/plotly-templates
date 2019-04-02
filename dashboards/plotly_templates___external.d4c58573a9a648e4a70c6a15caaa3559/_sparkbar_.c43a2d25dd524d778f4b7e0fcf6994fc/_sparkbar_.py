@@ -77,16 +77,31 @@ elif current_pct < 0:
 fmt = get_formatter(y_col)
 summary = f'{column_name(y_col)} is {format(current_val, formatter=fmt)}{direction}.'
 
-big_text = go.Scatter(
-  x = [0],
-  y = [.15],
-  text = style_text(summary, font_size = '16px', font_weight = 'bold'),
-  textposition = 'middle center',
-  mode = 'text',
-  hoverinfo = 'none',
-  xaxis = 'x2',
-  yaxis = 'y2'
-)
+big_text = go.Table(
+    header=dict(values=[''],
+               fill=dict(color='#98dae0'),
+               align=['center'],
+               height=0,
+               line=dict(width=0)),
+    cells=dict(values=[summary],
+#                fill = ['rgba(0,0,0,0)'],
+               line=dict(width=0),
+               font=dict(size=10),
+               align=['center']),
+# 		xaxis = 'x2',
+#   	yaxis = 'y2'
+    )
+
+# big_text = go.Scatter(
+#   x = [0],
+#   y = [.15],
+#   text = style_text(summary, font_size = '16px', font_weight = 'bold'),
+#   textposition = 'middle center',
+#   mode = 'text',
+#   hoverinfo = 'none',
+#   xaxis = 'x2',
+#   yaxis = 'y2'
+# )
 
 bar = go.Bar(
   x = df[ds_col],

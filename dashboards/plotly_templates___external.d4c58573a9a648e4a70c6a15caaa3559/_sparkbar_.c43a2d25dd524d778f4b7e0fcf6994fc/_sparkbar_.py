@@ -76,6 +76,8 @@ if current_pct > 0:
   direction = '<br><br>up ' + style_text(percent(abs(current_pct)), color='#00be11', font_weight='bold') + ' since last ' + agg + '.'
 elif current_pct < 0:
   direction = '<br><br>down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg + '.'
+else:
+  direction = '<br><br>no change since last ' + agg + '.'
   
 direction = style_text(direction, font_size = '16px')
   

@@ -1,4 +1,4 @@
-#PERISCOPE SPARKBAR TEMPLATE
+# PERISCOPE SPARKBAR TEMPLATE
 
 import pandas as pd 
 import plotly.plotly as py

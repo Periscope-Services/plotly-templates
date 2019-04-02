@@ -49,7 +49,7 @@ agg = aggregation(ds_col)
 
 df['y'] = pd.to_numeric(df[y_col])
 df['y'], lam = boxcox(df['y'])
-df['ds'] = df[ds_col]
+df['ds'] = pd.to_datetime(df[ds_col])
 df['in_progress'] = df.apply(lambda x: in_progress(x['ds'], agg), axis=1)
 
 m = Prophet()

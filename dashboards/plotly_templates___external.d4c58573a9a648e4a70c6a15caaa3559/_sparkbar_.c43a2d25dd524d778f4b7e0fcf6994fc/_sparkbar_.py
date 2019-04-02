@@ -111,7 +111,7 @@ layout = go.Layout(
   margin = {
     'l': 10,
     'r': 10,
-    't': 40,
+    't': 20,
     'b': 20
   },
   xaxis2 = {

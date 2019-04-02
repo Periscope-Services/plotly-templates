@@ -84,9 +84,9 @@ big_text = go.Table(
                height=0,
                line=dict(width=0)),
     cells=dict(values=[summary],
-#                fill = ['rgba(0,0,0,0)'],
+               fill = {'color': 'rgba(0,0,0,0)'},
                line=dict(width=0),
-               font=dict(size=10),
+               font=dict(size=16),
                align=['center']),
 		domain=dict(x=[0, 1],
                 y=[0.5, 1])
@@ -126,26 +126,6 @@ layout = go.Layout(
     'r': 10,
     't': 40,
     'b': 20
-  },
-  xaxis2 = {
-    'range': [-1, 1],
-    'fixedrange': True,
-    'autorange': False,
-    'showline': False,
-    'showticklabels': False,
-    'showgrid': False,
-    'zeroline': False,
-    'ticks': ''
-  },
-  yaxis2 = {
-    'domain': [0.5, 1],
-    'range': [-1, 1],
-    'fixedrange': True,
-    'autorange': False,
-    'showline': False,
-    'showticklabels': False,
-    'showgrid': False,
-    'zeroline': False
   },
   xaxis = {
     'ticks': '',

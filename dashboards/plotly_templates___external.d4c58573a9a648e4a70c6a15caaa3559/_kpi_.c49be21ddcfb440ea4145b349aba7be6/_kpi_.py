@@ -3,8 +3,6 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 
-color = '#02b9e5'
-
 def get_formatter(column):
   if '$' in column:
     return '$'

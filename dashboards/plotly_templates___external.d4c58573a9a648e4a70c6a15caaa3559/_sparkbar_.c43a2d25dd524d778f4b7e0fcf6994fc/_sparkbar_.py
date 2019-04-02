@@ -17,6 +17,9 @@ def column_name(column):
 def aggregation(ds_col):
   return ds_col.split('_', 1)[1].lower()
 
+def percent(pct):
+  return str(int(round(pct*100))) + '%'
+
 df.columns = [c.lower() for c in df.columns]
 y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]
@@ -29,6 +32,15 @@ current = df.tail(1)
 current_val = current[y_col]
 current_pct = current[pct_col]
 
+direction = ''
+if current_pct > 0:
+  direction = 'up ' + percent(abs(current_pct)) + ' from last ' + agg
+elif current_pct < 0:
+  direction = 'down ' + percent(abs(current_pct)) + ' from last ' + agg
+else:
+  direction = '
+
+text = f'{column_name(y_col)} is {"up" if 
 big_text = go.Scatter(
   x = [0],
   y = [.15],

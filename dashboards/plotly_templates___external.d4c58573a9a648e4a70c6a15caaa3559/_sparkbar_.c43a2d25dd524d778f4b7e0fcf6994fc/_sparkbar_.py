@@ -79,7 +79,7 @@ elif current_pct < 0:
 else:
   direction = direction + 'No change since last ' + agg + '.'
   
-direction = style_text(direction, font_size = '16px')
+direction = style_text(direction, font_size = '14px')
   
 fmt = get_formatter(y_col)
 summary = f'{agg.title() if agg != "day" else "Dai"}ly {column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}'

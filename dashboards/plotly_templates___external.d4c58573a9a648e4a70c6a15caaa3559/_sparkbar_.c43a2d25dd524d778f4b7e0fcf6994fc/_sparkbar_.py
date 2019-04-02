@@ -88,3 +88,65 @@ big_text = go.Scatter(
   yaxis = 'y2'
 )
 
+bar = go.Bar(
+  x = df[ds_col],
+  y = df[y_col],
+  name = column_name(y_col),
+  xaxis = 'x1',
+  yaxis = 'y1'
+)
+
+data = [big_text, bar]
+
+layout = go.Layout(
+  font = {
+    'color': '#000000'
+  },
+  showlegend = False,
+  margin = {
+    'l': 10,
+    'r': 10,
+    't': 40,
+    'b': 20
+  },
+  xaxis2 = {
+    'range': [-1, 1],
+    'fixedrange': True,
+    'autorange': False,
+    'showline': False,
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False,
+    'ticks': ''
+  },
+  yaxis2 = {
+    'domain': [0.5, 1],
+    'range': [-1, 1],
+    'fixedrange': True,
+    'autorange': False,
+    'showline': False,
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False
+  },
+  xaxis = {
+    'ticks': '',
+    'showline': False,
+    'showgrid': False,
+    'zeroline': False,
+    'fixedrange': True
+  },
+  yaxis = {
+    'domain': [0, 0.5],
+    'autorange': False,
+    'hoverformat': tickformat(y_col),
+    'fixedrange': True,
+    'showline': False,
+    'showticklabels': False,
+    'showgrid': False,
+    'zeroline': False
+  }
+)
+
+fig = go.Figure(data=data, layout=layout)
+periscope.plotly(fig)

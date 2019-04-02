@@ -93,7 +93,10 @@ bar = go.Bar(
   y = df[y_col],
   name = column_name(y_col),
   xaxis = 'x1',
-  yaxis = 'y1'
+  yaxis = 'y1',
+  marker = {
+    'color': '#02b9e5'
+  }
 )
 
 data = [big_text, bar]

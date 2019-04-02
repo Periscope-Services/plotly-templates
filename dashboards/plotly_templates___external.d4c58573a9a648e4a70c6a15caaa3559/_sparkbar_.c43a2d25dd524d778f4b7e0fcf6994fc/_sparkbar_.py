@@ -52,6 +52,10 @@ def abbrev(num):
     num /= 1000.0
   return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+def style_text(text, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<span style="{style}">{text}</span>'
+
 df.columns = [c.lower() for c in df.columns]
 y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]

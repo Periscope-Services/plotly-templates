@@ -7,5 +7,3 @@ where
   [created_at:month] >= dateadd(month, -5, getdate())
 group by
   1
-order by
-  1

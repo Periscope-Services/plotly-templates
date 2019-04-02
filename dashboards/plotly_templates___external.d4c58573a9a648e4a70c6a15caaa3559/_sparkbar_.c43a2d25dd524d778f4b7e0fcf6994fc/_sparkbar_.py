@@ -63,6 +63,7 @@ y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]
 agg = aggregation(ds_col)
 
+df.sort_values(by=[ds_col], inplace=True)
 pct_col = 'pct_change'
 df[pct_col] = df[y_col].pct_change()
 

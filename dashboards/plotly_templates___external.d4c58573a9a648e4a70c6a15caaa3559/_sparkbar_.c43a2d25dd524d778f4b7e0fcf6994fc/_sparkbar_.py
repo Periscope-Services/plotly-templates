@@ -73,14 +73,14 @@ current_pct = current[pct_col].iloc[0]
 
 direction = ''
 if current_pct > 0:
-  direction = ',<br><br>up ' + style_text(percent(abs(current_pct)), color='#00be11', font_weight='bold') + ' since last ' + agg
+  direction = '<br><br>up ' + style_text(percent(abs(current_pct)), color='#00be11', font_weight='bold') + ' since last ' + agg + '.'
 elif current_pct < 0:
-  direction = ',<br><br>down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg
+  direction = '<br><br>down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg + '.'
   
 direction = style_text(direction, font_size = '16px')
   
 fmt = get_formatter(y_col)
-summary = f'{agg.title() if agg != "day" else "Dai"}ly {column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}.'
+summary = f'{agg.title() if agg != "day" else "Dai"}ly {column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}'
 
 big_text = go.Scatter(
   x = [0],

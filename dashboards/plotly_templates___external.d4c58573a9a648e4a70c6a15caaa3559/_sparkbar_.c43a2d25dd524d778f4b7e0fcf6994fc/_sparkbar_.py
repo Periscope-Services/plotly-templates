@@ -71,13 +71,13 @@ current = df.tail(1)
 current_val = current[y_col].iloc[0]
 current_pct = current[pct_col].iloc[0]
 
-direction = ''
+direction = '<br><br>'
 if current_pct > 0:
-  direction = '<br><br>up ' + style_text(percent(abs(current_pct)), color='#00be11', font_weight='bold') + ' since last ' + agg + '.'
+  direction = direction + 'Up ' + style_text(percent(abs(current_pct)), color='#00be11', font_weight='bold') + ' since last ' + agg + '.'
 elif current_pct < 0:
-  direction = '<br><br>down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg + '.'
+  direction = direction + 'Down ' + style_text(percent(abs(current_pct)), color='#ff0000', font_weight='bold') + ' since last ' + agg + '.'
 else:
-  direction = '<br><br>no change since last ' + agg + '.'
+  direction = direction + 'No change since last ' + agg + '.'
   
 direction = style_text(direction, font_size = '16px')
   

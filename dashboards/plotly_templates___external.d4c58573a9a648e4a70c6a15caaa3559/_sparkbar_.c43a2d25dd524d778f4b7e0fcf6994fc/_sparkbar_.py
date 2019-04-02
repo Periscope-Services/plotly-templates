@@ -77,7 +77,7 @@ elif current_pct < 0:
 direction = style_text(direction, font_size = '16px')
   
 fmt = get_formatter(y_col)
-summary = f'{column_name(y_col)} is {style_text(format(current_val, formatter=fmt), color="#02b9e5", font_weight="bold")}{direction}.'
+summary = f'{column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color="#02b9e5", font_weight="bold")}{direction}.'
 
 big_text = go.Scatter(
   x = [0],

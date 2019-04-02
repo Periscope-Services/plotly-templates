@@ -70,9 +70,9 @@ current_pct = current[pct_col].iloc[0]
 
 direction = ''
 if current_pct > 0:
-  direction = ',<br>up <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
+  direction = ',<br><br>up <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
 elif current_pct < 0:
-  direction = ',<br>down <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
+  direction = ',<br><br>down <b>' + percent(abs(current_pct)) + '</b> from last ' + agg
   
 fmt = get_formatter(y_col)
 summary = f'{column_name(y_col)} is <b>{format(current_val, formatter=fmt)}</b>{direction}.'

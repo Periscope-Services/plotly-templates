@@ -123,7 +123,7 @@ layout = go.Layout(
     'ticks': ''
   },
   yaxis2 = {
-    'domain': [0.75, 1],
+    'domain': [0.7, 1],
     'range': [-1, 1],
     'fixedrange': True,
     'autorange': False,
@@ -141,7 +141,7 @@ layout = go.Layout(
     'showticklabels': False
   },
   yaxis = {
-    'domain': [0, 0.75],
+    'domain': [0, 0.7],
     'autorange': True,
     'hoverformat': tickformat(y_col),
     'fixedrange': True,

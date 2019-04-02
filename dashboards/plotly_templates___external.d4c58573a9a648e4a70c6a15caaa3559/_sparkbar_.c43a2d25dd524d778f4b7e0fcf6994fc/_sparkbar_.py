@@ -22,5 +22,21 @@ y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]
 agg = aggregation(ds_col)
 
-df['pct_change'] = df[y_col].pct_change()
+pct_col = 'pct_change'
+df[pct_col] = df[y_col].pct_change()
+
+current = df.tail(1)
+current_val = current[y_col]
+current_pct = current[pct_col]
+
+big_text = go.Scatter(
+  x = [0],
+  y = [.15],
+  text = style_text(summary, font_size = '16px', font_weight = 'bold') + '<br><br>' + detail[0] + '<br>' + detail[1],
+  textposition = 'middle center',
+  mode = 'text',
+  hoverinfo = 'none',
+  xaxis = 'x2',
+  yaxis = 'y2'
+)
 

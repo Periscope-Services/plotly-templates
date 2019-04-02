@@ -61,6 +61,8 @@ def style_text(text, **settings):
 df.columns = [c.lower() for c in df.columns]
 y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]
+df[y_col] = pd.to_numeric(y_col)
+df[ds_col] = pd.to_datetime(ds_col)
 agg = aggregation(ds_col)
 
 df.sort_values(by=[ds_col], inplace=True)

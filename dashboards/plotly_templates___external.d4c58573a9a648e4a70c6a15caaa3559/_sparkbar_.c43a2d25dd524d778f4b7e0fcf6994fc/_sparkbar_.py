@@ -3,6 +3,8 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 
+color = '#02b9e5'
+
 def get_formatter(column):
   if '$' in column:
     return '$'
@@ -77,7 +79,7 @@ elif current_pct < 0:
 direction = style_text(direction, font_size = '16px')
   
 fmt = get_formatter(y_col)
-summary = f'{column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color="#02b9e5", font_weight="bold")}{direction}.'
+summary = f'{column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}.'
 
 big_text = go.Scatter(
   x = [0],
@@ -97,7 +99,7 @@ bar = go.Bar(
   xaxis = 'x1',
   yaxis = 'y1',
   marker = {
-    'color': '#02b9e5'
+    'color': color
   }
 )
 

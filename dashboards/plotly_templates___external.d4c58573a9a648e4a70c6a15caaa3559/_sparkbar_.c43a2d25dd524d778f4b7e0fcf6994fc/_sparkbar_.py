@@ -88,8 +88,8 @@ big_text = go.Table(
                line=dict(width=0),
                font=dict(size=10),
                align=['center']),
-# 		xaxis = 'x2',
-#   	yaxis = 'y2'
+		domain=dict(x=[0, 1],
+                y=[0.5, 1])
     )
 
 # big_text = go.Scatter(

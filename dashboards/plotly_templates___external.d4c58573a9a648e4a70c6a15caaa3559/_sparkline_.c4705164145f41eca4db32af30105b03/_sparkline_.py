@@ -130,6 +130,9 @@ else:
   diff = df[kpi_col].max() - df[kpi_col].min()
   
   layout = go.Layout(
+   	font = {
+    'color': '#000000'
+  	},
     yaxis={
       'range': [df[kpi_col].min() - .1 * diff, df[kpi_col].max()*1.5],
       'showline': False, 

@@ -3,8 +3,8 @@ select
   , sum(price) as "y$_revenue"
 from
   periscope_views.purchases
-where
-  [created_at:month] >= dateadd(month, -5, getdate())
+where 1=1
+--   [created_at:month] >= dateadd(month, -5, getdate())
 group by
   1
 order by

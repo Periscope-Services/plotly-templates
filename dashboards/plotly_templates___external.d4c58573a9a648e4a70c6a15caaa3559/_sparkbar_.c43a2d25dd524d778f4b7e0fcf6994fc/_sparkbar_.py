@@ -138,7 +138,7 @@ layout = go.Layout(
   },
   yaxis = {
     'domain': [0, 0.5],
-    'autorange': False,
+    'autorange': True,
     'hoverformat': tickformat(y_col),
     'fixedrange': True,
     'showline': False,

@@ -75,12 +75,12 @@ elif current_pct < 0:
   direction = ', down ' + percent(abs(current_pct)) + ' from last ' + agg
   
 fmt = get_formatter(y_col)
-text = f'{column_name(y_col)} is {format(current_val, formatter=fmt)}{direction}.'
-print(text)
+summary = f'{column_name(y_col)} is {format(current_val, formatter=fmt)}{direction}.'
+
 big_text = go.Scatter(
   x = [0],
   y = [.15],
-  text = style_text(summary, font_size = '16px', font_weight = 'bold') + '<br><br>' + detail[0] + '<br>' + detail[1],
+  text = style_text(summary, font_size = '16px', font_weight = 'bold'),
   textposition = 'middle center',
   mode = 'text',
   hoverinfo = 'none',

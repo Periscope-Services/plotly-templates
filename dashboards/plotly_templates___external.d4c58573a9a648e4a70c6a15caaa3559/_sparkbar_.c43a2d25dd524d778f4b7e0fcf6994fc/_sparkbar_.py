@@ -80,7 +80,7 @@ elif current_pct < 0:
 direction = style_text(direction, font_size = '16px')
   
 fmt = get_formatter(y_col)
-summary = f'{column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}.'
+summary = f'{agg.title() if agg != "day" else "Dai"}ly {column_name(y_col)}: {style_text(format(current_val, formatter=fmt), color=color, font_weight="bold")}{direction}.'
 
 big_text = go.Scatter(
   x = [0],

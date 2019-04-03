@@ -12,6 +12,7 @@ import plotly.graph_objs as go
 import datetime
 from scipy.stats import boxcox
 from scipy.special import inv_boxcox
+from datetime import date
 
 def format(column):
   if column.startswith('y$'):
@@ -61,7 +62,8 @@ elif agg == 'day':
 	future = m.make_future_dataframe(periods=30)
 elif agg == 'week':
   future = m.make_future_dataframe(periods=183)
-  future = future[future['ds'].dt.weekday == 0]
+	future['day_diff'] = df.apply(lambda x: (x['ds'] - df['ds'].max()).days, axis=1)
+  future = future[future['day_diff'] % 7 == 0]
 elif agg == 'month':
   future = m.make_future_dataframe(periods=365)
   future = future[future['ds'].dt.day == 1]

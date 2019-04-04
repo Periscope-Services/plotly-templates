@@ -62,7 +62,7 @@ elif agg == 'day':
 	future = m.make_future_dataframe(periods=30)
 elif agg == 'week':
   future = m.make_future_dataframe(periods=183)
-  future['day_diff'] = df.apply(lambda x: (x['ds'] - df['ds'].max()).days, axis=1)
+  future['day_diff'] = future.apply(lambda x: (df['ds'].max() - x['ds']).days, axis=1)
   future = future[future['day_diff'] % 7 == 0]
 elif agg == 'month':
   future = m.make_future_dataframe(periods=365)

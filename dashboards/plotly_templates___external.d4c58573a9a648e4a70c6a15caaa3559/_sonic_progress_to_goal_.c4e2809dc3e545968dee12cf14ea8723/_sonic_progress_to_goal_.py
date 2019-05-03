@@ -144,12 +144,10 @@ for idx, row in df.iterrows():
         'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 6, 
         'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 6
       }
-    
-        
     images.append(checker)
     
     checkpoint_position = row[current_col] + .1 * max(df[current_col].max(), df[goal_col].max())
-    for i in range(0,10):
+    while(True):
       checkpoint = {
         'source': ring,
         'xref': 'x',
@@ -162,10 +160,9 @@ for idx, row in df.iterrows():
         'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15
       }
       images.append(checkpoint)
-      
-    	checkpoint_position = checkpoint_position + .1 * max(df[current_col].max(), df[goal_col].max())
+      checkpoint_position = checkpoint_position + .1 * max(df[current_col].max(), df[goal_col].max())
       print(checkpoint_position)
-    	if checkpoint_position > row[goal_col]:
+      if checkpoint_position > row[goal_col]:
         break
 
     images.append(car)

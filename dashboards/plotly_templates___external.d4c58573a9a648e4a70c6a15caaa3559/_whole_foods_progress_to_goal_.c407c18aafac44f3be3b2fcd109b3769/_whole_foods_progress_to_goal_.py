@@ -102,7 +102,7 @@ road = go.Bar(
 progress = go.Bar(
   x=df[current_col],
   y=df[x_column],
-  marker=dict(color='#006749'),
+  marker=dict(color='#408772'),
   orientation='h',
   name='Current'
 )

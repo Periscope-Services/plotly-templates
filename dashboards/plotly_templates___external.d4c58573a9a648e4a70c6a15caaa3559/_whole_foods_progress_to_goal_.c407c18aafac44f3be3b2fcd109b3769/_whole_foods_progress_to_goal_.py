@@ -3,8 +3,8 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import math
 
-# racer = 'https://i.imgur.com/xk3PJy7.png'
 racer = 'https://i.imgur.com/AKstrEW.png'
+finish = 'https://i.imgur.com/0TY9CN4.png'
 
 # GENERIC HELPER FUNCTIONS
 def get_formatter(column):
@@ -121,15 +121,15 @@ formatter = get_formatter(current_col)
 images = []
 for idx, row in df.iterrows():
     checker = {
-        'source': 'https://i.imgur.com/0TY9CN4.png',
+        'source': finish,
         'xref': 'x',
         'yref': 'y',
         'x': row[goal_col],
         'y': row[x_column],
         'xanchor': 'center',
         'yanchor': 'middle',
-        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 8.5, 
-        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 8.5
+        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 12, 
+        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 12
       }
     
     car = {

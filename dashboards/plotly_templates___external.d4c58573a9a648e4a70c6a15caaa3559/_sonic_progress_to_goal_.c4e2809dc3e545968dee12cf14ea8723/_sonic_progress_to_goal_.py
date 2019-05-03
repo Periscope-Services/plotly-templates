@@ -162,7 +162,7 @@ for idx, row in df.iterrows():
       images.append(checkpoint)
       checkpoint_position = checkpoint_position + .1 * max(df[current_col].max(), df[goal_col].max())
       print(checkpoint_position)
-      if checkpoint_position > row[goal_col]:
+      if checkpoint_position > .975 * row[goal_col]:
         break
 
     images.append(car)

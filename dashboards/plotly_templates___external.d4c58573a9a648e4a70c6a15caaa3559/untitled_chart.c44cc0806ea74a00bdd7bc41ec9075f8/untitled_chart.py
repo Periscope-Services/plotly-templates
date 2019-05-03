@@ -147,6 +147,7 @@ for idx, row in df.iterrows():
 print(images)
 
 layout = go.Layout(
+  images=images,
  	font = {
     'color': '#000000'
   },
@@ -160,7 +161,7 @@ layout = go.Layout(
   ),
   yaxis=dict(showline=False, showgrid=False, zeroline=False),
   xaxis=dict(showgrid=True, tickformat=tickformat(formatter), hoverformat=tickformat(formatter)),
-  images=images
+
 )
 
 fig = dict(data=[road, divider_line, progress], layout=layout)

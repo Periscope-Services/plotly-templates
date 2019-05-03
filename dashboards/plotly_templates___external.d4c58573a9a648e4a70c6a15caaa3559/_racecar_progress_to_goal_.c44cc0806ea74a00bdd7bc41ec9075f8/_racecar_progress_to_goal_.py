@@ -125,8 +125,8 @@ for idx, row in df.iterrows():
         'y': row[x_column],
         'xanchor': 'center',
         'yanchor': 'middle',
-        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15, 
-        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15
+        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 10, 
+        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 10
       }
     
     car = {

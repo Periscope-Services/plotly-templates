@@ -3,6 +3,9 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import math
 
+racer = 'https://i.imgur.com/xk3PJy7.png'
+finish = 'https://i.imgur.com/2xo9Iqm.png'
+
 # GENERIC HELPER FUNCTIONS
 def get_formatter(column):
   if '$' in column:
@@ -118,7 +121,7 @@ formatter = get_formatter(current_col)
 images = []
 for idx, row in df.iterrows():
     checker = {
-        'source': 'https://i.imgur.com/2xo9Iqm.png',
+        'source': finish,
         'xref': 'x',
         'yref': 'y',
         'x': row[goal_col],
@@ -130,7 +133,7 @@ for idx, row in df.iterrows():
       }
     
     car = {
-        'source': 'https://i.imgur.com/xk3PJy7.png',
+        'source': racer,
         'xref': 'x',
         'yref': 'y',
         'x': row[current_col],

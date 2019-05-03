@@ -125,20 +125,20 @@ for idx, row in df.iterrows():
         'y': row[x_column],
         'xanchor': 'center',
         'yanchor': 'middle',
-        'sizex': 4, 
-        'sizey': 4
+        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15, 
+        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15
       }
     
     car = {
-        'source': 'https://images.vexels.com/media/users/3/139434/isolated/lists/4bcbe9b4d3e6f6e4c1207c142a98c2d8-ferrari-racing-car-race.png',
+        'source': 'https://i.imgur.com/xk3PJy7.png',
         'xref': 'x',
         'yref': 'y',
         'x': row[current_col],
         'y': row[x_column],
         'xanchor': 'center',
         'yanchor': 'middle',
-        'sizex': 15, 
-        'sizey': 15
+        'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 4, 
+        'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 4
       }
     
     images.append(checker)

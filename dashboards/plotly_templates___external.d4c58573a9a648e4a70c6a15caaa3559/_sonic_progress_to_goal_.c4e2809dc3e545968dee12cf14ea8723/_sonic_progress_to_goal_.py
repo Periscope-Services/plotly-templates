@@ -145,23 +145,29 @@ for idx, row in df.iterrows():
         'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 6
       }
     
-    checkpoint_position = row[current_col] + .1 * max(df[current_col].max(), df[goal_col].max())
+        
+    images.append(checker)
     
-    checkpoint = {
+    checkpoint_position = row[current_col] + .1 * max(df[current_col].max(), df[goal_col].max())
+    for i in range(0,10):
+      checkpoint = {
         'source': ring,
         'xref': 'x',
         'yref': 'y',
-        'x': row[current_col] + .1 * max(df[current_col].max(), df[goal_col].max()),
+        'x': checkpoint_position,
         'y': row[x_column],
         'xanchor': 'center',
         'yanchor': 'middle',
         'sizex': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15, 
         'sizey': 1.0 * max(df[current_col].max(), df[goal_col].max()) / 15
       }
-    
-    images.append(checker)
-    if checkpoint_position < row[goal_col]:
-    	images.append(checkpoint)
+      images.append(checkpoint)
+      
+    	checkpoint_position = checkpoint_position + .1 * max(df[current_col].max(), df[goal_col].max())
+      print(checkpoint_position)
+    	if checkpoint_position > row[goal_col]:
+        break
+
     images.append(car)
     
 print(images)

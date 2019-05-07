@@ -78,6 +78,7 @@ def rgba_from_hex(hex, alpha):
 
 color = '#1c6cab'
 
+# get current and goal values
 df.columns = [c.upper() for c in df.columns]
 current_col = [c for c in df.columns if c.startswith('CURRENT')][0]
 goal_col = [c for c in df.columns if c.startswith('GOAL')][0]

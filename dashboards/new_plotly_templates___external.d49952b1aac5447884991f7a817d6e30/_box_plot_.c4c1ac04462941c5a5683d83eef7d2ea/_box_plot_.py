@@ -80,7 +80,6 @@ def plot(df, annotation=None):
   periscope.plotly(fig)
   
 try:
-  i = int('e')
   plot(df)
 except Exception as e:
 	print(e)

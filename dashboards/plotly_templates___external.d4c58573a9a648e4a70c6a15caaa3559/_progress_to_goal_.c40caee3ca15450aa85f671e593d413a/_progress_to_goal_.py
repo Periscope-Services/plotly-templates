@@ -1,3 +1,9 @@
+# PERISCOPE PROGRESS TO GOAL TEMPLATE
+# SQL output should have 2 columns:
+#    1) current: the currently attained value
+#    2) goal: the goal value
+# 	 optionally apply dollar formatting by naming the columns current_$ and goal_$
+
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go

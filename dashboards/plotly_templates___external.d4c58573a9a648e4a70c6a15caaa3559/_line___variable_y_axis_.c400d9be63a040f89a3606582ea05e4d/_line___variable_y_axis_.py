@@ -23,7 +23,7 @@ def format(column):
   else:
     return '.3s'
 
-# 
+# Helper function that returns unique column values 
 def unique_vals(df, column):
   return df.groupby(column).size().reset_index()[column]
 

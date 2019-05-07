@@ -14,6 +14,7 @@ from scipy.stats import boxcox
 from scipy.special import inv_boxcox
 from datetime import date
 
+# return the Plotly formatters based on $ or % sign
 def format(column):
   if column.startswith('y$'):
     return '$.3s'
@@ -22,12 +23,15 @@ def format(column):
   else:
     return '.3s'
   
+# formats the column name
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
+# gets the level of aggregation
 def aggregation(ds_col):
   return ds_col.split('_', 1)[1].lower()
 
+# true if the period is for the current period, should be excluded from forecast model since it's likely not complete yet
 def in_progress(dt, agg):
   now = datetime.datetime.now()
   if agg == 'hour':
@@ -48,6 +52,7 @@ y_col = [c for c in df.columns if c.startswith('y')][0]
 ds_col = [c for c in df.columns if c.startswith('ds')][0]
 agg = aggregation(ds_col)
 
+# apply boxcox transform to smooth the data
 df['y'] = pd.to_numeric(df[y_col])
 df['y'], lam = boxcox(df['y'])
 df['ds'] = pd.to_datetime(df[ds_col])
@@ -56,6 +61,7 @@ df['in_progress'] = df.apply(lambda x: in_progress(x['ds'], agg), axis=1)
 m = Prophet()
 m.fit(df.query('in_progress == False')[['ds','y']])
 
+# make the future periods based on level of aggregation
 if agg == 'hour':
   future = m.make_future_dataframe(periods=72, freq='H')
 elif agg == 'day':
@@ -74,9 +80,11 @@ elif agg == 'year':
   future = m.make_future_dataframe(periods=731)
   future = future[(future['ds'].dt.month == 1) & (future['ds'].dt.day == 1)]
 
+# make prediction
 forecast = m.predict(future)
 forecast[['yhat','yhat_upper','yhat_lower']] = forecast[['yhat','yhat_upper','yhat_lower']].apply(lambda x: inv_boxcox(x, lam))
 
+# plot prediction
 yhat = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat'],
@@ -90,6 +98,7 @@ yhat = go.Scatter(
   name = 'Forecast',
 )
 
+# plot lower bound of confidence
 yhat_lower = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat_lower'],
@@ -100,6 +109,7 @@ yhat_lower = go.Scatter(
   hoverinfo = 'none',
 )
 
+# plot upper bound of confidence
 yhat_upper = go.Scatter(
   x = forecast['ds'],
   y = forecast['yhat_upper'],
@@ -110,6 +120,7 @@ yhat_upper = go.Scatter(
   mode = 'none'
 )
 
+# plot actual values
 actual = go.Scatter(
   x = df['ds'],
   y = df[y_col],

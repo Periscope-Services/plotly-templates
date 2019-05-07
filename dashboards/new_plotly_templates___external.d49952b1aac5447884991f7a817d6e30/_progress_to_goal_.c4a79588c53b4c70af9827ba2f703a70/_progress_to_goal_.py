@@ -10,6 +10,12 @@ import plotly.graph_objs as go
 import math
 import sys
 
+community_post = ''
+dummy_df = pd.DataFrame()
+dummy_df = pd.DataFrame()
+dummy_df['current_$'] = [1000]
+dummy_df['goal_$'] = [2000]
+
 # GENERIC HELPER FUNCTIONS
 def get_formatter(column):
   if '$' in column:
@@ -171,9 +177,6 @@ try:
   plot(df)
 except Exception as e:
   print(e)
-  dummy_df = pd.DataFrame()
-  dummy_df['current_$'] = [1000]
-  dummy_df['goal_$'] = [2000]
   annotation = {
     'x': 0.5,
     'y': 0.5,
@@ -181,7 +184,7 @@ except Exception as e:
     'ay': 0,
     'xref': 'paper',
     'yref': 'paper',
-    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', 'https://community.periscopedata.com/', font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
     'showarrow': False,
     'textangle': -25
   }

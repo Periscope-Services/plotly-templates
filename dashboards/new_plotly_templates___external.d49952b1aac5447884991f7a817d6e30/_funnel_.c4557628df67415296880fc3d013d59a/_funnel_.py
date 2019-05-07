@@ -8,6 +8,9 @@ import pandas as pd
 import plotly.plotly as py
 from plotly import graph_objs as go
 
+community_post = ''
+dummy_df = pd.DataFrame()
+
 def label(row):
   label = f'<b>{row["PHASE"]}</b> - {"{:,}".format(row["VALUE"])}'
   if row['INDEX'] > 0:
@@ -39,102 +42,127 @@ DEFAULT_PLOTLY_COLORS = [
 def color(i):
   return DEFAULT_PLOTLY_COLORS[i % len(DEFAULT_PLOTLY_COLORS)]
 
-n_phase = len(phases)
-plot_width = 400
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
 
-# height of a section and difference between sections 
-section_h = 20
-section_d = 1
+def plot(df, annotation=None):
+  n_phase = len(phases)
+  plot_width = 400
 
-# multiplication factor to calculate the width of other sections
-unit_width = plot_width / max(values)
+  # height of a section and difference between sections 
+  section_h = 20
+  section_d = 1
 
-# width of each funnel section relative to the plot width
-phase_w = [int(value * unit_width) for value in values]
+  # multiplication factor to calculate the width of other sections
+  unit_width = plot_width / max(values)
 
-# plot height based on the number of sections and the gap in between them
-height = section_h * n_phase + section_d * (n_phase - 1)
+  # width of each funnel section relative to the plot width
+  phase_w = [int(value * unit_width) for value in values]
 
-# list containing all the plot shapes
-shapes = []
+  # plot height based on the number of sections and the gap in between them
+  height = section_h * n_phase + section_d * (n_phase - 1)
 
-# list containing the Y-axis location for each section's name and value text
-label_y = []
+  # list containing all the plot shapes
+  shapes = []
 
-for i in range(n_phase):
-        if (i == n_phase-1):
-                points = [phase_w[i] / 2, height, phase_w[i] / 2, height - section_h]
-        else:
-                points = [phase_w[i] / 2, height, phase_w[i+1] / 2, height - section_h]
-        print(points)
-        path = 'M {0} {1} L {0} {3} L -{0} {3} L -{0} {1} Z'.format(*points)
+  # list containing the Y-axis location for each section's name and value text
+  label_y = []
 
-        shape = {
-                'type': 'path',
-                'path': path,
-                'fillcolor': color(i),
-                'line': {
-                    'width': 1,
-                    'color': color(i)
-                },
-                'layer': 'below'
-        }
-        shapes.append(shape)
-        
-        # Y-axis location for this section's details (text)
-        label_y.append(height - (section_h / 2))
+  for i in range(n_phase):
+          if (i == n_phase-1):
+                  points = [phase_w[i] / 2, height, phase_w[i] / 2, height - section_h]
+          else:
+                  points = [phase_w[i] / 2, height, phase_w[i+1] / 2, height - section_h]
+          print(points)
+          path = 'M {0} {1} L {0} {3} L -{0} {3} L -{0} {1} Z'.format(*points)
 
-        height = height - (section_h + section_d)
-        
-# For phase names
-label_trace = go.Scatter(
-    x=[0]*n_phase,
-    y=label_y,
-    mode='text',
-    text=df['LABELS'],
-    textfont=dict(
-        color='#000000',
-        size=15
-    ),
-  	hoverinfo='text'
-)
+          shape = {
+                  'type': 'path',
+                  'path': path,
+                  'fillcolor': color(i),
+                  'line': {
+                      'width': 1,
+                      'color': color(i)
+                  },
+                  'layer': 'below'
+          }
+          shapes.append(shape)
 
-data = [label_trace]
- 
-layout = go.Layout(
-#     title="<b>Funnel Chart</b>",
-    titlefont=dict(
-        size=20,
-        color='rgb(203,203,203)'
-    ),
-    hovermode = 'closest',
-    shapes=shapes,
-#     height=560,
-#     width=800,
-    showlegend=False,
-#     paper_bgcolor='rgba(44,58,71,1)',
-#     plot_bgcolor='rgba(44,58,71,1)',
-    xaxis=dict(
-        showticklabels=False,
-        zeroline=False,
-        showgrid=False,
-        ticks=''
-    ),
-    yaxis=dict(
-        showticklabels=False,
-        zeroline=False,
-        showgrid=False,
-        ticks=''
-    ),
-  margin=dict(
-                t=20,
-                b=50,
-                l=10,
-                r=10
-              )
-)
- 
-fig = go.Figure(data=data, layout=layout)
+          # Y-axis location for this section's details (text)
+          label_y.append(height - (section_h / 2))
 
-# For Python 2 & 3, pass configs into plotly (i.e `plotly_output(figure,config={'displayModeBar':True})
-periscope.plotly(fig, config={'displayModeBar':False})
+          height = height - (section_h + section_d)
+
+  # For phase names
+  label_trace = go.Scatter(
+      x=[0]*n_phase,
+      y=label_y,
+      mode='text',
+      text=df['LABELS'],
+      textfont=dict(
+          color='#000000',
+          size=15
+      ),
+      hoverinfo='text'
+  )
+
+  data = [label_trace]
+
+  layout = go.Layout(
+  #     title="<b>Funnel Chart</b>",
+      titlefont=dict(
+          size=20,
+          color='rgb(203,203,203)'
+      ),
+      hovermode = 'closest',
+      shapes=shapes,
+  #     height=560,
+  #     width=800,
+      showlegend=False,
+  #     paper_bgcolor='rgba(44,58,71,1)',
+  #     plot_bgcolor='rgba(44,58,71,1)',
+      xaxis=dict(
+          showticklabels=False,
+          zeroline=False,
+          showgrid=False,
+          ticks=''
+      ),
+      yaxis=dict(
+          showticklabels=False,
+          zeroline=False,
+          showgrid=False,
+          ticks=''
+      ),
+    margin=dict(
+                  t=20,
+                  b=50,
+                  l=10,
+                  r=10
+                )
+  )
+  
+  if annotation is not None:
+    layout['annotations'] = [annotation]
+
+  fig = go.Figure(data=data, layout=layout)
+
+  # For Python 2 & 3, pass configs into plotly (i.e `plotly_output(figure,config={'displayModeBar':True})
+  periscope.plotly(fig, config={'displayModeBar':False})
+  
+try:
+  plot(df)
+except Exception as e:
+  print(e)
+  annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+  plot(dummy_df, annotation=annotation)

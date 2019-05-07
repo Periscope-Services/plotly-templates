@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
 import math
+import sys
 
 # GENERIC HELPER FUNCTIONS
 def get_formatter(column):
@@ -72,6 +73,10 @@ def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'
 
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
+
 # translates hex code to RGB values
 def rgb_from_hex(hex):
   h = hex.lstrip('#')
@@ -86,71 +91,96 @@ def rgba_from_hex(hex, alpha):
   rgb = rgb_from_hex(hex)
   return f'rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})'
 
-color = '#1c6cab'
 
-# get current and goal values
-df.columns = [c.upper() for c in df.columns]
-current_col = [c for c in df.columns if c.startswith('CURRENT')][0]
-goal_col = [c for c in df.columns if c.startswith('GOAL')][0]
-data = df.iloc[[0]]
-current = data[current_col].iloc[0]
-goal = data[goal_col].iloc[0]
+def plot(df, annotation=None):
+  color = '#1c6cab'
 
-formatter = get_formatter(current_col)
-current_formatted = format(current, formatter)
-goal_formatted = format(goal, formatter)
+  # get current and goal values
+  df.columns = [c.upper() for c in df.columns]
+  current_col = [c for c in df.columns if c.startswith('CURRENT')][0]
+  goal_col = [c for c in df.columns if c.startswith('GOAL')][0]
+  data = df.iloc[[0]]
+  current = data[current_col].iloc[0]
+  goal = data[goal_col].iloc[0]
 
-pct = 1.0 * current / goal
-if pct > 1:
-  color = '#00be11'
+  formatter = get_formatter(current_col)
+  current_formatted = format(current, formatter)
+  goal_formatted = format(goal, formatter)
+
+  pct = 1.0 * current / goal
+  if pct > 1:
+    color = '#00be11'
 
 
-donut = go.Pie(
- 	values = [current, goal - current if goal > current else 0],
-  marker = {
-    'colors': [color, rgba_from_hex(color, .2)]
-  },
-  hole = .8,
-  textinfo='none',
-  hoverinfo='none',
-  sort=False
-)
-
-x = .5 * (1 + math.cos(math.radians(max((1 - pct), 0) * 360 + 90)))
-y = .5 * (1 + math.sin(math.radians(max((1 - pct), 0) * 360 + 90)))
-xsign = 1 if pct <= .5 else -1
-ysign = 1 if pct <= .5 else -1
-
-layout = go.Layout(
- 	font = {
-    'color': '#000000'
-  },
-  showlegend = False,
-  margin = {
-    't': 30,
-    'b': 30,
-    'l': 30,
-    'r': 30
-  },
-  annotations = [
-		{
-      'x': 0.5,
-      'y': 0.55,
-      'ax': 0,
-      'ay': 0,
-      'text': style_text(pretty_percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
+  donut = go.Pie(
+    values = [current, goal - current if goal > current else 0],
+    marker = {
+      'colors': [color, rgba_from_hex(color, .2)]
     },
-    {
-      'x': x,
-      'y': y,
-      'ax': xsign * 10,
-      'ay': ysign * 10,
-    	'arrowcolor': 'rgba(0,0,0,0)',
-      'text': style_text(current_formatted, font_size='14px', font_weight='bold')
-    }
-  ]
-)
+    hole = .8,
+    textinfo='none',
+    hoverinfo='none',
+    sort=False
+  )
 
-fig = dict(data=[donut], layout=layout)
+  x = .5 * (1 + math.cos(math.radians(max((1 - pct), 0) * 360 + 90)))
+  y = .5 * (1 + math.sin(math.radians(max((1 - pct), 0) * 360 + 90)))
+  xsign = 1 if pct <= .5 else -1
+  ysign = 1 if pct <= .5 else -1
+  
+  annotations = [
+      {
+        'x': 0.5,
+        'y': 0.55,
+        'ax': 0,
+        'ay': 0,
+        'text': style_text(pretty_percent(pct), font_size='32px', font_weight='bold') + '<br><br>' + style_text('Goal: ' + goal_formatted, font_size='18px')
+      },
+      {
+        'x': x,
+        'y': y,
+        'ax': xsign * 10,
+        'ay': ysign * 10,
+        'arrowcolor': 'rgba(0,0,0,0)',
+        'text': style_text(current_formatted, font_size='14px', font_weight='bold')
+      }
+    ]
+  
+  if annotation is not None:
+    annotations.append(annotation)
 
-periscope.plotly(fig)
+  layout = go.Layout(
+    font = {
+      'color': '#000000'
+    },
+    showlegend = False,
+    margin = {
+      't': 30,
+      'b': 30,
+      'l': 30,
+      'r': 30
+    },
+    annotations = annotations
+  )
+
+  fig = dict(data=[donut], layout=layout)
+
+  periscope.plotly(fig)
+  
+try:
+  plot(df)
+except Exception as e:
+  print(e)
+  dummy_df = pd.DataFrame()
+  dummy_df['current_$'] = [1000]
+  dummy_df['goal_$'] = [2000]
+  annotation = {
+    'x': 0.5,
+    'y': 0.55,
+    'ax': 0,
+    'ay': 0,
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', 'https://community.periscopedata.com/', font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+  plot(dummy_df, annotation=annotation)

@@ -1,0 +1,13 @@
+chart_type: Code Image
+code_language: python3.6
+database_name: Redshift
+display_name: '[3D Scatter Plot]'
+encrypted_definition: KoAVYtLjJT9b6HmLF56mF++zXYBmQULXP2ect7xCeGJlglRELQflouOraeHHun7ViDhOrGaYiYSjahW/oQL/JmWwzv+oBspcFdY12fJ6TprlTqlN1dDAyZ0ozDVZQkM0aQMZlaTe7RRuxJjHCWPXaTSqcCoc/tUjluRc2bwjNsgFDhQf5zfhtVw/dZ86WSAX
+limit_preview:
+  rows: null
+position:
+  left: 37
+  top: 48
+size:
+  height: 12
+  width: 23

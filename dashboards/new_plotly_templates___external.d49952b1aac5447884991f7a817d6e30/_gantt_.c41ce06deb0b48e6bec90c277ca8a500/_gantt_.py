@@ -4,6 +4,9 @@ import plotly.figure_factory as ff
 
 community_post = ''
 dummy_df = pd.DataFrame()
+dummy_df['task'] = ['Task 1', 'Task 2', 'Task 3']
+dummy_df['start'] = ['2019-02-07', '2018-12-24', '2018-11-09']
+dummy_df['finish'] = ['2019-03-08', '2019-05-08', '2019-04-08']
 
 def style_link(text, link, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])

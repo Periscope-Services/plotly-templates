@@ -1,3 +1,9 @@
+# PERISCOPE BOX PLOT TEMPLATE
+# SQL output should have 2 columns:
+#    1) s_<name>: the value to group by. if you're grouping by `platform`, call it s_platform
+#    2) y_<name>: the Y value for the box plot. if you're plotting `revenue`, call it y_revenue
+# 	 optionally apply dollar formatting by naming the columns y$_<name>
+
 import pandas as pd 
 import plotly.plotly as py
 import plotly.graph_objs as go

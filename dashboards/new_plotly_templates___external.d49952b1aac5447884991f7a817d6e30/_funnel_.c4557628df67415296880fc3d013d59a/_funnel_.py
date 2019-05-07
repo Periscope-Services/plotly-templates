@@ -10,8 +10,8 @@ from plotly import graph_objs as go
 
 community_post = ''
 dummy_df = pd.DataFrame()
-dummy_df['phase'] = ['lead', 'signup', 'purchase']
-dummy_df['value'] = ['1000', '200', '50']
+dummy_df['PHASE'] = ['Lead', 'Signup', 'Purchase']
+dummy_df['VALUE'] = ['1000', '200', '50']
 
 # color of each funnel section
 DEFAULT_PLOTLY_COLORS = [
@@ -28,7 +28,7 @@ DEFAULT_PLOTLY_COLORS = [
 ]
 
 
-def label(row):
+def label(row, df):
   label = f'<b>{row["PHASE"]}</b> - {"{:,}".format(row["VALUE"])}'
   if row['INDEX'] > 0:
     label += f'<br>{"{:.0%}".format(row["VALUE"]/df["VALUE"].max())}'
@@ -43,8 +43,9 @@ def style_link(text, link, **settings):
 
 def plot(df, annotation=None):
   df.columns = [c.upper() for c in df.columns]
+  df['VALUE'] = pd.to_numeric(df['VALUE'])
   df['INDEX'] = df.index
-  df['LABELS'] = df.apply(lambda row: label(row), axis=1)
+  df['LABELS'] = df.apply(lambda row: label(row, df), axis=1)
 
   # chart stages data
   values = df['VALUE']
@@ -154,6 +155,7 @@ def plot(df, annotation=None):
   periscope.plotly(fig, config={'displayModeBar':False})
   
 try:
+  i = int('e')
   plot(df)
 except Exception as e:
   print(e)

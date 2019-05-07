@@ -7,6 +7,9 @@ import pandas as pd
 import numpy as np
 import plotly.plotly as py
 
+community_post = ''
+dummy_df = pd.DataFrame()
+
 DEFAULT_PLOTLY_COLORS = [
     '#1f77b4',  # muted blue
     '#ff7f0e',  # safety orange
@@ -36,72 +39,97 @@ def is_circular(df_agg, row):
     return True
   else:
     return False
+  
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
 
-df.columns = [c.lower() for c in df.columns]
+def plot(df, annotation=None):
+  df.columns = [c.lower() for c in df.columns]
 
-# get unique stages and assign indexes
-stages = df.groupby(['stage_name']).size().reset_index()[['stage_name']]
-stages['stage_index'] = stages.index
-stages['color'] = stages.apply(lambda r: color(r['stage_index']), axis=1)
+  # get unique stages and assign indexes
+  stages = df.groupby(['stage_name']).size().reset_index()[['stage_name']]
+  stages['stage_index'] = stages.index
+  stages['color'] = stages.apply(lambda r: color(r['stage_index']), axis=1)
 
-# identify the prior stage for each record
-df['stage_index'] = df.apply(lambda r: stages.loc[stages['stage_name'] == r['stage_name']]['stage_index'].iloc[0], axis=1)
-df['prior_stage_index'] = df.groupby('unique_id').stage_index.shift()
+  # identify the prior stage for each record
+  df['stage_index'] = df.apply(lambda r: stages.loc[stages['stage_name'] == r['stage_name']]['stage_index'].iloc[0], axis=1)
+  df['prior_stage_index'] = df.groupby('unique_id').stage_index.shift()
 
-# only take records that have a prior stage (can't plot something on a sankey if it doesn't go anywhere)
-df = df[np.isfinite(df['prior_stage_index'])]
+  # only take records that have a prior stage (can't plot something on a sankey if it doesn't go anywhere)
+  df = df[np.isfinite(df['prior_stage_index'])]
 
-# get prior stage name
-df['prior_stage_name'] = df.apply(lambda r: stages.loc[stages['stage_index'] == r['prior_stage_index']]['stage_name'].iloc[0], axis=1)
-df['prior_stage_index'] = df['prior_stage_index'].astype(int)
+  # get prior stage name
+  df['prior_stage_name'] = df.apply(lambda r: stages.loc[stages['stage_index'] == r['prior_stage_index']]['stage_name'].iloc[0], axis=1)
+  df['prior_stage_index'] = df['prior_stage_index'].astype(int)
 
-# aggregate counts
-df_agg = df.groupby(['prior_stage_index', 'prior_stage_name', 'stage_index', 'stage_name']).size().reset_index(name='count')
+  # aggregate counts
+  df_agg = df.groupby(['prior_stage_index', 'prior_stage_name', 'stage_index', 'stage_name']).size().reset_index(name='count')
 
-# remove any circular references
-df_agg['is_circular'] = df_agg.apply(lambda row: is_circular(df_agg, row), axis=1)
-df_agg = df_agg.query('is_circular == False')
+  # remove any circular references
+  df_agg['is_circular'] = df_agg.apply(lambda row: is_circular(df_agg, row), axis=1)
+  df_agg = df_agg.query('is_circular == False')
 
-# identifies the end stages in the sankey
-priors = df_agg['prior_stage_index']
-ends = stages.query('stage_index not in @priors')
+  # identifies the end stages in the sankey
+  priors = df_agg['prior_stage_index']
+  ends = stages.query('stage_index not in @priors')
 
-# apply colors to each flow
-df_agg['color'] = df_agg.apply(lambda r: f'rgba({rgb_from_hex(color(r["prior_stage_index"]))},{.25 if r["stage_index"] in ends["stage_index"] else .25})', axis=1)
-    
-data=dict(
-  type='sankey',
-  node=dict(
-    label=stages['stage_name'],
-    pad = 30,
-    thickness = 5,
-    color=stages['color'],
-    line=dict(
-      width=0
+  # apply colors to each flow
+  df_agg['color'] = df_agg.apply(lambda r: f'rgba({rgb_from_hex(color(r["prior_stage_index"]))},{.25 if r["stage_index"] in ends["stage_index"] else .25})', axis=1)
+
+  data=dict(
+    type='sankey',
+    node=dict(
+      label=stages['stage_name'],
+      pad = 30,
+      thickness = 5,
+      color=stages['color'],
+      line=dict(
+        width=0
+      )
+    ),
+    link=dict(
+      source=df_agg['prior_stage_index'].astype(int)
+      ,target=df_agg['stage_index']
+      ,value=df_agg['count']
+      ,color=df_agg['color']
     )
-  ),
-  link=dict(
-    source=df_agg['prior_stage_index'].astype(int)
-    ,target=df_agg['stage_index']
-    ,value=df_agg['count']
-    ,color=df_agg['color']
   )
-)
 
-layout =  dict(
-    font = dict(
-      size = 16
-    ),
-    hoverlabel = dict(
-        bgcolor = 'purple'
-    ),
-  margin=dict(
-                t=20,
-                b=50,
-                l=10,
-                r=10
-              )
-)
+  layout =  dict(
+      font = dict(
+        size = 16
+      ),
+      hoverlabel = dict(
+          bgcolor = 'purple'
+      ),
+    margin=dict(
+                  t=20,
+                  b=50,
+                  l=10,
+                  r=10
+                )
+  )
+  
+  if annotation is not None:
+    layout['annotations'] = [annotation]
 
-fig = dict(data=[data], layout=layout)
-periscope.plotly(fig)
+  fig = dict(data=[data], layout=layout)
+  periscope.plotly(fig)
+
+try:
+  plot(df)
+except Exception as e:
+  print(e)
+  annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+  plot(dummy_df, annotation=annotation)

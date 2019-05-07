@@ -18,8 +18,6 @@ df.columns = [c.upper() for c in df.columns]
 df['INDEX'] = df.index
 df['LABELS'] = df.apply(lambda row: label(row), axis=1)
 
-print(df)
-
 # chart stages data
 values = df['VALUE']
 phases = df['PHASE']

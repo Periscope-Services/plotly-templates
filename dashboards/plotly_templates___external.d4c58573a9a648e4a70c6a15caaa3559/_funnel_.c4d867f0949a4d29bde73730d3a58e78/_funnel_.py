@@ -1,3 +1,8 @@
+# PERISCOPE FUNNEL CHART TEMPLATE
+# SQL output should have 2 columns:
+#    1) phase: the name of the stage in the funnel
+#    2) value: the number of items in that stage
+
 from __future__ import division
 import pandas as pd 
 import plotly.plotly as py

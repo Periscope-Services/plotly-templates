@@ -9,7 +9,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 
-# Helper function that formats values as $ or % 
+# gets the formatter for the column ($ or %)
 def get_formatter(column):
   if '$' in column:
     return '$'
@@ -18,7 +18,7 @@ def get_formatter(column):
   else:
     return None
 
-# Helper function that formats chart ticks
+# returns the plotly formatter for the column
 def tickformat(column):
   if column.startswith('y$'):
     return '$.3s'
@@ -26,20 +26,20 @@ def tickformat(column):
     return '.0%'
   else:
     return '.3s'
-
-# Helper function that removes underscores
+  
+# formats the column name
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
-# Helper function that determines with aggregation to apply
+# identifies the aggregation level
 def aggregation(ds_col):
   return ds_col.split('_', 1)[1].lower()
 
-# Helper function that formats a number as a percent
+# formats a percent value
 def percent(pct):
   return str(int(round(pct*100))) + '%'
 
-# Helper function that applys formatting functions
+# formats a number based on its formatter ($ or %)
 def format(num, formatter = None):
   if formatter is None:
     return abbrev(num)
@@ -48,7 +48,7 @@ def format(num, formatter = None):
   elif formatter == '%':
     return percent(num)
 
-# Helper function that formats values as currency
+# formats a dollar value
 def dollars(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -57,7 +57,7 @@ def dollars(num):
     num /= 1000.0
   return '${}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
-# Helper function that truncates large numbers and makes them human readable
+# makes a large number human-readable, e.g. 100000 -> 100K
 def abbrev(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -66,11 +66,12 @@ def abbrev(num):
     num /= 1000.0
   return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
-# Helper function that styles text 
+# returns the css styling for text
 def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'
 
+# displays text in the center of the plot
 def number_overlay(text):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True)
   annotation = dict(x=0, y=0, ax=0, ay=0, text=text)
@@ -78,14 +79,17 @@ def number_overlay(text):
   layout = go.Layout(xaxis=axis_setting,yaxis=axis_setting,annotations=[annotation],margin=margin,)
   fig=go.Figure(data=[], layout=layout)
   periscope.plotly(fig, config={'displayModeBar':False})
-  
+
+# translates a hex code to RGB values
 def rgb_from_hex(hex):
   h = hex.lstrip('#')
   return tuple(((int(h[i:i+2], 16))) for i in (0, 2 ,4))
 
+# translates RGB values to hex code
 def rgb_to_hex(rgb):
   return '#%02x%02x%02x' % rgb
 
+# calculates the gradient value between two colors, based on a scale
 def gradient(value, scale, colors):
   min = scale[0]
   max = scale[1]
@@ -99,6 +103,7 @@ def gradient(value, scale, colors):
   rgb = tuple(((int(round(pct * (max_color[i] - min_color[i]) + min_color[i])))) for i in range(0,3))
   return rgb_to_hex(rgb)
 
+# prints a message indicating there was no data
 def no_data():
   msg = 'No data to display.'
   number_overlay(style_text(msg, font_size="18px"))

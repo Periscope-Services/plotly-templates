@@ -1,4 +1,8 @@
-# SQL output is imported as a dataframe variable called 'df'
+# PERISCOPE STACKRANK TEMPLATE
+# SQL output should have 3 columns:
+#    1) date: the date of the ranking
+#    2) entity: the name of the thing being ranked
+#		 3) rank: the entity's rank at that point in time
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go

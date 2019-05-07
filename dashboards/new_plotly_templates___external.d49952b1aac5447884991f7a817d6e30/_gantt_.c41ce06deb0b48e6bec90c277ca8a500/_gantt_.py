@@ -15,8 +15,23 @@ def plot(df, annotation=None):
 
   # Use figure factory to create gantt chart
   fig = ff.create_gantt(df)
-  layout = go.Layout()
   if annotation is not None:
-    fig['annotations'] = [annotation]
+    fig['layout']['annotations'] = [annotation]
   periscope.plotly(fig)
   
+try:
+  plot(df)
+except Exception as e:
+	print(e)
+	annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+	plot(dummy_df, annotation=annotation)

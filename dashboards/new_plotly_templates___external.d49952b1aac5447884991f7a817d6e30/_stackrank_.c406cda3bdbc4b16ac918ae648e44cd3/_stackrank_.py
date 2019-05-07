@@ -6,9 +6,25 @@
 import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
+from random import shuffle
+from datetime import datetime, timedelta
 
 community_post = ''
-dummy_df = pd.DataFrame()
+current_date = datetime.now()
+
+cookies = ['Thin Mints', 'Samoas' ,'Trefoils', 'Do-si-dos', 'Tagalongs']
+vals = []
+
+for i in range(0,10):
+  date = current_date - timedelta(days=i)
+  shuffle(cookies)
+  for k in range(0, len(cookies)):
+    vals.append({
+      'date': date,
+      'entity': cookies[k],
+      'rank': k + 1
+    })
+dummy_df = pd.DataFrame(vals)
 
 def style_link(text, link, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])

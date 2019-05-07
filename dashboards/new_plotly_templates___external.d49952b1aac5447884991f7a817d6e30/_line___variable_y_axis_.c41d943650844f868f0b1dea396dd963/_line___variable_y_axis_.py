@@ -13,6 +13,11 @@ import numpy as np
 
 community_post = ''
 dummy_df = pd.DataFrame()
+dummy_df['x_date'] = pd.date_range(start='1/1/2018', end='1/1/2019')
+dummy_df['row_num'] = range(1, dummy_df.shape[0] + 1)
+dummy_df['multiplier'] = np.random.randint(10,50, dummy_df.shape[0])
+dummy_df['y$_revenue'] = dummy_df['row_num'] * dummy_df['multiplier']
+dummy_df['y_purchases'] = np.random.randint(100, 1000, dummy_df.shape[0])
 
 # Helper Function that removes underscores
 def column_name(column):

@@ -8,9 +8,14 @@ import pandas as pd
 import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
+import numpy as np
 
 community_post = ''
 dummy_df = pd.DataFrame()
+dummy_df['ds_day'] = pd.date_range(start='12/1/2018', end='1/1/2019')
+dummy_df['row_num'] = range(1, dummy_df.shape[0] + 1)
+dummy_df['multiplier'] = np.random.randint(10,50, dummy_df.shape[0])
+dummy_df['y$_revenue'] = dummy_df['row_num'] * dummy_df['multiplier']
 
 # gets the formatter for the column ($ or %)
 def get_formatter(column):

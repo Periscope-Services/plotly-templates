@@ -1,4 +1,8 @@
-# SQL output is imported as a dataframe variable called 'df'
+# PERISCOPE SANKEY TEMPLATE
+# SQL output should have 3 columns:
+#    1) unique_id: the unique identifier for that entity
+#    2) stage_name: the name of the stage in the sankey
+#		 3) sort: identifies the order in which the entity moved from stage to stage, e.g. a date column associated with each transition
 import pandas as pd 
 import numpy as np
 import plotly.plotly as py

@@ -10,6 +10,9 @@ import plotly.graph_objs as go
 import datetime
 from datetime import timedelta
 
+community_post = ''
+
+
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 

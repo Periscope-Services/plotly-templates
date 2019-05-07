@@ -11,7 +11,7 @@ import datetime
 from datetime import timedelta
 
 community_post = ''
-
+dummy_df = pd.DataFrame()
 
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
@@ -33,42 +33,66 @@ def get_columns(df):
 def unique_vals(df, column):
   return df.groupby(column).size().reset_index()[column]
 
-df.columns = [c.upper() for c in df.columns]
-y_column, series_columns, unique_series = get_columns(df)
-has_series = unique_series is not None
-# showlegend = has_series
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
 
-traces = []
-for idx, series in unique_series.iterrows():
-  query = ' & '.join(f'{col} == "{series[{col}].iloc[0]}"' for col in series_columns)
-  df_series = df.query(query)
-  traces.append(
-    go.Box(
-      y=df_series[y_column],
-      boxpoints = False,
-      name=f'{", ".join([series[{col}].iloc[0] for col in series_columns])}'
+def plot(df, annotation=None):
+  df.columns = [c.upper() for c in df.columns]
+  y_column, series_columns, unique_series = get_columns(df)
+  has_series = unique_series is not None
+  # showlegend = has_series
+
+  traces = []
+  for idx, series in unique_series.iterrows():
+    query = ' & '.join(f'{col} == "{series[{col}].iloc[0]}"' for col in series_columns)
+    df_series = df.query(query)
+    traces.append(
+      go.Box(
+        y=df_series[y_column],
+        boxpoints = False,
+        name=f'{", ".join([series[{col}].iloc[0] for col in series_columns])}'
+      )
     )
-  )
 
-data = traces
+  data = traces
 
-layout = {
-  'margin': {
-    'l': 50,
-    'r': 0,
-    'b': 50,
-    't': 0
-  },
-  'yaxis': {
-    'title': column_name(y_column),
-    'tickformat': format(y_column),
-    'hoverformat': format(y_column)
-  },
-  'xaxis': {
-    'title': f'{", ".join([column_name(col) for col in series_columns])}'
-  },
-  'showlegend': False
-}
-
-fig = dict(data=data, layout=layout)
-periscope.plotly(fig)
+  layout = {
+    'margin': {
+      'l': 50,
+      'r': 0,
+      'b': 50,
+      't': 0
+    },
+    'yaxis': {
+      'title': column_name(y_column),
+      'tickformat': format(y_column),
+      'hoverformat': format(y_column)
+    },
+    'xaxis': {
+      'title': f'{", ".join([column_name(col) for col in series_columns])}'
+    },
+    'showlegend': False
+  }
+  if annotation is not None:
+    layout['annotations'] = [annotation]
+  fig = dict(data=data, layout=layout)
+  periscope.plotly(fig)
+  
+try:
+  i = int('e')
+  plot(df)
+except Exception as e:
+	print(e)
+	annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+	plot(dummy_df, annotation=annotation)

@@ -9,12 +9,17 @@ import plotly.graph_objs as go
 
 df.columns = [c.lower() for c in df.columns]
 
+# get distinct entities and dates
 entities = df.groupby(['entity']).size().reset_index()['entity']
 dates = df.groupby(['date']).size().reset_index()['date']
+
+
 traces = []
 annotations = []
 for entity in entities:
   entity_data = df.query('entity == @entity')
+  
+  # plot rank of entity on each date
   for date in dates:
     if date > entity_data['date'].min() and entity_data.query('date == @date').size == 0:
       new_row = pd.DataFrame({
@@ -41,6 +46,8 @@ for entity in entities:
     }
   )
   traces.append(trace)
+  
+  # plot a gray line to indicate drop offs from the ranking
   trace2 = go.Scatter(
     x=entity_data['date'],
     y=entity_data['rank'],

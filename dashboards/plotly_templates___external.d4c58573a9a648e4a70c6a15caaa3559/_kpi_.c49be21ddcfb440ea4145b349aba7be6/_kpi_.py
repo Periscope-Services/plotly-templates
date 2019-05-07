@@ -9,6 +9,7 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 
+# Helper function that formats values as $ or % 
 def get_formatter(column):
   if '$' in column:
     return '$'
@@ -17,6 +18,7 @@ def get_formatter(column):
   else:
     return None
 
+# Helper function that formats chart ticks
 def tickformat(column):
   if column.startswith('y$'):
     return '$.3s'
@@ -24,16 +26,20 @@ def tickformat(column):
     return '.0%'
   else:
     return '.3s'
-  
+
+# Helper function that removes underscores
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
+# Helper function that determines with aggregation to apply
 def aggregation(ds_col):
   return ds_col.split('_', 1)[1].lower()
 
+# Helper function that formats a number as a percent
 def percent(pct):
   return str(int(round(pct*100))) + '%'
 
+# Helper function that applys formatting functions
 def format(num, formatter = None):
   if formatter is None:
     return abbrev(num)
@@ -42,6 +48,7 @@ def format(num, formatter = None):
   elif formatter == '%':
     return percent(num)
 
+# Helper function that formats values as currency
 def dollars(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -50,6 +57,7 @@ def dollars(num):
     num /= 1000.0
   return '${}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+# Helper function that truncates large numbers and makes them human readable
 def abbrev(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -58,6 +66,7 @@ def abbrev(num):
     num /= 1000.0
   return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+# Helper function that styles text 
 def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'

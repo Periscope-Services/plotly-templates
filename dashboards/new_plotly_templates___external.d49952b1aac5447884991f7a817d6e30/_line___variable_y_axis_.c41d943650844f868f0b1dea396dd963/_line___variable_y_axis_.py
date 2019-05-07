@@ -9,6 +9,10 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 from datetime import timedelta
+import numpy as np
+
+community_post = ''
+dummy_df = pd.DataFrame()
 
 # Helper Function that removes underscores
 def column_name(column):
@@ -148,7 +152,6 @@ def plot(df, annotation=None):
   periscope.plotly(fig)
   
 try:
-  i = int('test')
   plot(df)
 except Exception as e:
 	print(e)
@@ -159,8 +162,8 @@ except Exception as e:
     'ay': 0,
     'xref': 'paper',
     'yref': 'paper',
-    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', 'https://community.periscopedata.com/', font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
     'showarrow': False,
     'textangle': -25
   }
-	plot(df, annotation=annotation)
+	plot(dummy_df, annotation=annotation)

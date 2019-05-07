@@ -39,5 +39,3 @@ from
   mtd_sales
   join goals on
     mtd_sales.platform = goals.platform
-
-select 'robert' as current, 'ryan' as goal

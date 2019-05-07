@@ -18,6 +18,7 @@ def get_formatter(column):
   else:
     return None
 
+# formats a number based on its formatter ($ or %)
 def format(num, formatter = None):
   if formatter is None:
     return abbrev(num)
@@ -26,6 +27,7 @@ def format(num, formatter = None):
   elif formatter == '%':
     return percent(num)
 
+# formats a number to dollars
 def dollars(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -34,6 +36,7 @@ def dollars(num):
     num /= 1000.0
   return '${}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+# makes a number human readable e.g. 100000 -> 100K
 def abbrev(num):
   num = float('{:.3g}'.format(float(num)))
   magnitude = 0
@@ -42,9 +45,11 @@ def abbrev(num):
     num /= 1000.0
   return '{}{}'.format('{:f}'.format(num).rstrip('0').rstrip('.'), ['', 'K', 'M', 'B', 'T'][magnitude])
 
+# formats a number to a percent
 def percent(pct):
   return str(int(round(pct*100))) + '%'
 
+# adds flair to a percent if it's above 100
 def pretty_percent(pct):
   fmt_pct = percent(pct)
 #   if fmt_pct == '100%':
@@ -53,6 +58,7 @@ def pretty_percent(pct):
     fmt_pct = f'🎊<br><br>{fmt_pct}'
   return fmt_pct
 
+# prints text in the center of the plot
 def number_overlay(text):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True, autorange=False)
   annotation = dict(x=0, y=0, ax=0, ay=0, text=text)
@@ -61,17 +67,21 @@ def number_overlay(text):
   fig=go.Figure(data=[], layout=layout)
   periscope.plotly(fig, config={'displayModeBar':False})
 
+# returns css-styled text
 def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'
 
+# translates hex code to RGB values
 def rgb_from_hex(hex):
   h = hex.lstrip('#')
   return tuple(((int(h[i:i+2], 16))) for i in (0, 2 ,4))
 
+# translates RGB values to hex code
 def rgb_to_hex(rgb):
   return '#%02x%02x%02x' % rgb
 
+# translates hex code to RGB values with alpha
 def rgba_from_hex(hex, alpha):
   rgb = rgb_from_hex(hex)
   return f'rgba({rgb[0]},{rgb[1]},{rgb[2]},{alpha})'

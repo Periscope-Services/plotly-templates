@@ -10,20 +10,8 @@ from plotly import graph_objs as go
 
 community_post = ''
 dummy_df = pd.DataFrame()
-
-def label(row):
-  label = f'<b>{row["PHASE"]}</b> - {"{:,}".format(row["VALUE"])}'
-  if row['INDEX'] > 0:
-    label += f'<br>{"{:.0%}".format(row["VALUE"]/df["VALUE"].max())}'
-  return label
-
-df.columns = [c.upper() for c in df.columns]
-df['INDEX'] = df.index
-df['LABELS'] = df.apply(lambda row: label(row), axis=1)
-
-# chart stages data
-values = df['VALUE']
-phases = df['PHASE']
+dummy_df['phase'] = ['lead', 'signup', 'purchase']
+dummy_df['value'] = ['1000', '200', '50']
 
 # color of each funnel section
 DEFAULT_PLOTLY_COLORS = [
@@ -39,6 +27,13 @@ DEFAULT_PLOTLY_COLORS = [
     '#17becf'   # blue-teal
 ]
 
+
+def label(row):
+  label = f'<b>{row["PHASE"]}</b> - {"{:,}".format(row["VALUE"])}'
+  if row['INDEX'] > 0:
+    label += f'<br>{"{:.0%}".format(row["VALUE"]/df["VALUE"].max())}'
+  return label
+
 def color(i):
   return DEFAULT_PLOTLY_COLORS[i % len(DEFAULT_PLOTLY_COLORS)]
 
@@ -47,6 +42,14 @@ def style_link(text, link, **settings):
   return f'<a href="{link}" style="{style}">{text}</a>'
 
 def plot(df, annotation=None):
+  df.columns = [c.upper() for c in df.columns]
+  df['INDEX'] = df.index
+  df['LABELS'] = df.apply(lambda row: label(row), axis=1)
+
+  # chart stages data
+  values = df['VALUE']
+  phases = df['PHASE']
+  
   n_phase = len(phases)
   plot_width = 400
 

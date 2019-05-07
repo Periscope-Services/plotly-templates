@@ -9,6 +9,9 @@ import plotly.plotly as py
 import plotly.graph_objs as go
 import datetime
 
+community_post = ''
+dummy_df = pd.DataFrame()
+
 # gets the formatter for the column ($ or %)
 def get_formatter(column):
   if '$' in column:
@@ -71,12 +74,20 @@ def style_text(text, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<span style="{style}">{text}</span>'
 
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
+
 # displays text in the center of the plot
-def number_overlay(text):
+def number_overlay(text, annotation_msg=None):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True)
   annotation = dict(x=0, y=0, ax=0, ay=0, text=text)
   margin = dict(t=60)
-  layout = go.Layout(xaxis=axis_setting,yaxis=axis_setting,annotations=[annotation],margin=margin,)
+  if annotation_msg is not None:
+    annotations = [annotation, annotation_msg]
+  else:
+    annotations = [annotation]
+  layout = go.Layout(xaxis=axis_setting,yaxis=axis_setting,annotations=annotations,margin=margin,)
   fig=go.Figure(data=[], layout=layout)
   periscope.plotly(fig, config={'displayModeBar':False})
 
@@ -107,11 +118,8 @@ def gradient(value, scale, colors):
 def no_data():
   msg = 'No data to display.'
   number_overlay(style_text(msg, font_size="18px"))
-
-if df.size==0:
-	no_data()
-
-else:
+  
+def plot(df, annotation=None):
   df.columns = [c.lower() for c in df.columns]
   y_col = [c for c in df.columns if c.startswith('y')][0]
   ds_col = [c for c in df.columns if c.startswith('ds')][0]
@@ -138,4 +146,21 @@ else:
     style_text(kpi_change, font_size='16px', color=color)
   )
   
-  number_overlay(text)
+  number_overlay(text, annotation)
+  
+try:
+  plot(df)
+except Exception as e:
+	print(e)
+	annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', community_post, font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+	plot(dummy_df, annotation=annotation)

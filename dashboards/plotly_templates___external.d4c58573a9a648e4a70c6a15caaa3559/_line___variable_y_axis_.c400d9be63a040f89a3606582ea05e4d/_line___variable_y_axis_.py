@@ -10,9 +10,11 @@ import plotly.graph_objs as go
 import datetime
 from datetime import timedelta
 
+# Helper Function that removes underscores
 def column_name(column):
   return column.split('_', 1)[1].replace('_',' ').title()
 
+# Helper function that formats values as $ or %
 def format(column):
   if column.startswith('Y$'):
     return '$.3s'
@@ -20,11 +22,12 @@ def format(column):
     return '.0%'
   else:
     return '.3s'
-  
+
+# 
 def unique_vals(df, column):
   return df.groupby(column).size().reset_index()[column]
 
-# get the x, y, and series columns
+# Get the x, y, and series columns
 def get_columns(df):
   x_column = [c for c in df.columns if c.startswith('X')][0]
   y_columns = [c for c in df.columns if c.startswith('Y')]
@@ -50,7 +53,7 @@ def button(y_col, y_columns, unique_series = None):
   }
       
 
-# force consistent casing for columns
+# Force consistent casing for columns
 df.columns = [c.upper() for c in df.columns]
 x_column, y_columns, series_columns, unique_series = get_columns(df)
 has_series = unique_series is not None
@@ -100,7 +103,7 @@ updatemenus = list([
 first_y = y_columns[0]
 xaxis = {'title': column_name(x_column)}
 
-# if x value is a date, then add the quick-filter options for dates
+# If x value is a date, then add the quick-filter options for dates
 if isinstance(df[x_column].iloc[0], datetime.date):
   duration = (df[x_column].max() - df[x_column].min()).days
   month_buttons = [dict(count=x, label=str(x)+'m', step='month', stepmode='backward') for x in [1,3,6] if x * 30 <= duration]

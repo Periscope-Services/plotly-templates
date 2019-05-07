@@ -51,91 +51,116 @@ def button(y_col, y_columns, unique_series = None):
       }
     ]
   }
+
+def style_link(text, link, **settings):
+  style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
+  return f'<a href="{link}" style="{style}">{text}</a>'
       
+def plot(df, annotation=None):
+  # Force consistent casing for columns
+  df.columns = [c.upper() for c in df.columns]
+  x_column, y_columns, series_columns, unique_series = get_columns(df)
+  has_series = unique_series is not None
+  showlegend = has_series
 
-# Force consistent casing for columns
-df.columns = [c.upper() for c in df.columns]
-x_column, y_columns, series_columns, unique_series = get_columns(df)
-has_series = unique_series is not None
-showlegend = has_series
+  data = []
+  buttons = []
 
-data = []
-buttons = []
+  for idx, y_col in enumerate(y_columns):
+    buttons.append(button(y_col, y_columns, unique_series=unique_series))
 
-for idx, y_col in enumerate(y_columns):
-  buttons.append(button(y_col, y_columns, unique_series=unique_series))
-  
-  # if no series -- create the traces for each y value and only display the first one
-  if not has_series:
-    trace = go.Scatter(
-			x=df[x_column],
-      y=df[y_col],
-      name=column_name(y_col),
-      visible=(idx==0)
-    )
-    data.append(trace)
-    
-  # if series -- create the traces for each series for each y value, still only displaying series for the first y value
-  else:
-    for idx_series, series in unique_series.iterrows():
-      query = ' & '.join(f'{col} == "{series[{col}].iloc[0]}"' for col in series_columns)
-      df_series = df.query(query)
+    # if no series -- create the traces for each y value and only display the first one
+    if not has_series:
       trace = go.Scatter(
-        x=df_series[x_column],
-        y=df_series[y_col],
-        name=f'{", ".join([series[{col}].iloc[0] for col in series_columns])}',
-        visible=(idx == 0)
+        x=df[x_column],
+        y=df[y_col],
+        name=column_name(y_col),
+        visible=(idx==0)
       )
-      data.append(trace) 
+      data.append(trace)
 
-updatemenus = list([
-  {
-    'active': 0,
-    'buttons': buttons,
-    'x': -.1,
-    'y': 1.25,
-    'xanchor': 'left',
-    'yanchor': 'top',
-    'bgcolor': '#FFFFFF'
+    # if series -- create the traces for each series for each y value, still only displaying series for the first y value
+    else:
+      for idx_series, series in unique_series.iterrows():
+        query = ' & '.join(f'{col} == "{series[{col}].iloc[0]}"' for col in series_columns)
+        df_series = df.query(query)
+        trace = go.Scatter(
+          x=df_series[x_column],
+          y=df_series[y_col],
+          name=f'{", ".join([series[{col}].iloc[0] for col in series_columns])}',
+          visible=(idx == 0)
+        )
+        data.append(trace) 
+
+  updatemenus = list([
+    {
+      'active': 0,
+      'buttons': buttons,
+      'x': -.1,
+      'y': 1.25,
+      'xanchor': 'left',
+      'yanchor': 'top',
+      'bgcolor': '#FFFFFF'
+    }
+  ])
+
+  first_y = y_columns[0]
+  xaxis = {'title': column_name(x_column)}
+
+  # If x value is a date, then add the quick-filter options for dates
+  if isinstance(df[x_column].iloc[0], datetime.date):
+    duration = (df[x_column].max() - df[x_column].min()).days
+    month_buttons = [dict(count=x, label=str(x)+'m', step='month', stepmode='backward') for x in [1,3,6] if x * 30 <= duration]
+
+    xaxis['rangeselector'] = {
+      'buttons': list(month_buttons + [{'step': 'all'}]) if len(month_buttons) > 0 else None, 
+      'xanchor': 'right',
+      'yanchor': 'top',
+      'x': 1,
+      'y': 1.2
+    }
+
+  layout = {
+    'showlegend': showlegend,
+    'yaxis': {
+      'tickformat': format(first_y),
+      'hoverformat': format(first_y)
+    },
+    'xaxis': xaxis,
+    'margin': {
+      't': 20,
+      'b': 50,
+      'l': 60,
+      'r': 10
+    }
   }
-])
-
-first_y = y_columns[0]
-xaxis = {'title': column_name(x_column)}
-
-# If x value is a date, then add the quick-filter options for dates
-if isinstance(df[x_column].iloc[0], datetime.date):
-  duration = (df[x_column].max() - df[x_column].min()).days
-  month_buttons = [dict(count=x, label=str(x)+'m', step='month', stepmode='backward') for x in [1,3,6] if x * 30 <= duration]
   
-  xaxis['rangeselector'] = {
-    'buttons': list(month_buttons + [{'step': 'all'}]) if len(month_buttons) > 0 else None, 
-    'xanchor': 'right',
-    'yanchor': 'top',
-    'x': 1,
-    'y': 1.2
-  }
-             
-layout = {
-  'showlegend': showlegend,
-  'yaxis': {
-    'tickformat': format(first_y),
-    'hoverformat': format(first_y)
-  },
-  'xaxis': xaxis,
-  'margin': {
-    't': 20,
-    'b': 50,
-    'l': 60,
-    'r': 10
-  }
-}
-if len(y_columns) > 1:
-  layout['updatemenus'] = updatemenus
-else:
-	layout['yaxis']['title'] = column_name(y_columns[0])
+  if annotation is not None:
+    layout['annotations'] = [annotation]
+  if len(y_columns) > 1:
+    layout['updatemenus'] = updatemenus
+  else:
+    layout['yaxis']['title'] = column_name(y_columns[0])
 
-fig = dict(data=data, layout=layout)
+  fig = dict(data=data, layout=layout)
 
-# Use Periscope to visualize a dataframe by passing the data to periscope.output()
-periscope.plotly(fig)
+  # Use Periscope to visualize a dataframe by passing the data to periscope.output()
+  periscope.plotly(fig)
+  
+try:
+  i = int('test')
+  plot(df)
+except Exception as e:
+	print(e)
+	annotation = {
+    'x': 0.5,
+    'y': 0.5,
+    'ax': 0,
+    'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
+    'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', 'https://community.periscopedata.com/', font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
+    'showarrow': False,
+    'textangle': -25
+  }
+	plot(df, annotation=annotation)

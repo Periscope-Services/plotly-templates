@@ -176,9 +176,11 @@ except Exception as e:
   dummy_df['goal_$'] = [2000]
   annotation = {
     'x': 0.5,
-    'y': 0.55,
+    'y': 0.5,
     'ax': 0,
     'ay': 0,
+    'xref': 'paper',
+    'yref': 'paper',
     'text': style_link('DUMMY<br><br><br><br>DATA<br><br><br><br>EXAMPLE', 'https://community.periscopedata.com/', font_size='60px', font_weight='bold', color='rgba(0, 0, 0, .25)'),
     'showarrow': False,
     'textangle': -25

@@ -9,6 +9,10 @@ import plotly.plotly as py
 
 community_post = ''
 dummy_df = pd.DataFrame()
+dummy_df['unique_id'] = pd.Series(range(1,101))
+dummy_df['stage_name'] = pd.Series(np.tile(['Step 1A', 'Step 1B', 'Step 1C', 'Step 2A','Step 2B','Step 2C','Step 2D','Step 3A', 'Step 3B', 'Step 3C'], 10))
+dummy_df['sort'] = pd.Series(np.tile([1,1,1,2,2,2,2,3,3,3], 10))
+
 
 DEFAULT_PLOTLY_COLORS = [
     '#1f77b4',  # muted blue

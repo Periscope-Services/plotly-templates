@@ -1,4 +1,4 @@
-Database Name: Cache
+Database Name: Redshift
 Settings:
   Materialize View: true
   Metadata:

@@ -9,7 +9,7 @@ import plotly.plotly as py
 import random
 
 def dummy_stage(idx):
-  rand = random.randint(0, 3)
+  rand = random.randint(0, 2)
   step = 'Step'
   if idx < 1000:
     step += ' 1'

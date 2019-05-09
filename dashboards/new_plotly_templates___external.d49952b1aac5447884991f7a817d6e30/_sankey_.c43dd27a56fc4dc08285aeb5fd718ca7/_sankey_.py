@@ -11,12 +11,7 @@ import random
 def dummy_stage(idx):
   rand = random.randint(0, 2)
   step = 'Step'
-  if idx < 1000:
-    step += ' 1'
-  elif idx < 2000:
-    step += ' 2'
-  else:
-    step += ' 3'
+  step += ' ' + str(int(idx / 1000) + 1)
   if rand == 0:
     step += 'A'
   elif rand == 1:

@@ -37,3 +37,5 @@ select
   , 3
 from
   u
+
+select 1

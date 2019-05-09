@@ -7,17 +7,13 @@ import pandas as pd
 import numpy as np
 import plotly.plotly as py
 import random
+import string
 
 def dummy_stage(idx):
   rand = random.randint(0, 2)
   step = 'Step'
   step += ' ' + str(int(idx / 1000) + 1)
-  if rand == 0:
-    step += 'A'
-  elif rand == 1:
-    step += 'B'
-  else:
-    step += 'C'
+  step += list(string.ascii_uppercase)[rand]
   return step
 
 community_post = ''

@@ -11,7 +11,7 @@ import datetime
 from datetime import timedelta
 import numpy as np
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/63s76y'
 dummy_df = pd.DataFrame()
 dummy_df['x_date'] = pd.date_range(start='1/1/2018', end='1/1/2019')
 dummy_df['row_num'] = range(1, dummy_df.shape[0] + 1)

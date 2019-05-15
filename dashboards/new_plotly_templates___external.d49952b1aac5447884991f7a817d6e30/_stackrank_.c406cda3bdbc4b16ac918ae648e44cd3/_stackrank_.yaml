@@ -1,8 +1,8 @@
 chart_type: Code Image
 code_language: python3.6
-database_name: Redshift
+database_name: example_database
 display_name: '[STACKRANK]'
-encrypted_definition: JAwqThhzh0ASm1jFK0DwovAdbzfxmwcNqKmBtkyeIXAAeLAI6t+fchGiAfBIiyhfND/Jd6Og0u1NI5fgNhS2mnqlJznRbDYzXLo5aORs9GiSdrKrtlczSyism7q9gLkDMf24hEdsqIilAsbo5DspmypCU9qjIpri7Zwv7B4xBN4BPp8dCmZZhhKleWfWyB6miYmdSxhEnBG0XTOKrLTk8g==
+encrypted_definition: OMVzgYmy5Cdz/4PW2lNGo7lMxyne5L0gGzJbaS5/va8awEOqdkHdYkvxBqgK7fMQgXrOjVV3JGs3sVvuqsK7POvJc8eYk3uk5OLG4YdXy+myLs0i+EDGQ4LJTGbdlIKuuJgGRwznIUA3jdkPZtZMfU2V2Z5BNockSKDfvNOWohGzgxJpXV04hgqH0vIJvAD4OlWndOQXxwIH+TiLBEfgUQ==
 position:
   left: 0
   top: 36

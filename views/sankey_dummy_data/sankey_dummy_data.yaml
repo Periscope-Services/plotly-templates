@@ -1,4 +1,4 @@
-Database Name: Redshift
+Database Name: example_database
 Settings:
   Materialize View: true
   Metadata:

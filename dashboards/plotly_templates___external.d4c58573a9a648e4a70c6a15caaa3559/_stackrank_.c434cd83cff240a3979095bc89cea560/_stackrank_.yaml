@@ -1,6 +1,6 @@
 chart_type: Code Image
 code_language: python3.6
-database_name: Redshift
+database_name: example_database
 display_name: '[STACKRANK]'
 encrypted_definition: l73Yeopva7kjmU4Cz8kdYOCHbwJB4YxEy9vBiBZIflFdRvNUZ9FU0KlaBmEE+W9oD8qRw2ASPMyA52KCRa5fpYQcwFGhxV0B3uvmlUrum3c29iZz8t3oRfL5mkLlnjn5dYGtk3iryYTN1HnH3vC27cG1QIlEEDBpvZNSZeuLYFit0M8ynEVZua/3oABXvuAa
 position:

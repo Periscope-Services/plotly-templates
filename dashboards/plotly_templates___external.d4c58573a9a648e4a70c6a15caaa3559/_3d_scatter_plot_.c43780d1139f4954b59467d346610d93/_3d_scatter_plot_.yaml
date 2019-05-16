@@ -1,6 +1,6 @@
 chart_type: Code Image
 code_language: python3.6
-database_name: example_database
+database_name: Redshift
 display_name: '[3D Scatter Plot]'
 encrypted_definition: 3T47JD5D4qFobbfCkFdHJQq5CvbCTVND03td3BTIxApiok2mz73BP0q3Ln6F/rgoRaH8JY4uSg4N999kptUI/cOT69QqwnUHtYvo6y6dVHLMGopI6aau9jXvU7UH41DzvvKM5RfupZRqesaPSTqlC3lyf2cKkGNsZlqMWjIaEAUf8m10s2Uz7RPi3YyTrmdE
 limit_preview:

@@ -11,7 +11,7 @@ import datetime
 from datetime import timedelta
 import numpy as np
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/36s9zd/boxplot-plot-ly'
 dummy_df = pd.DataFrame()
 dummy_df['y_purchases'] = np.random.randint(1,50, 10000)
 dummy_df['s_platform'] = dummy_df.apply(lambda x: 'android' if x['y_purchases'] % 3 == 1 else 'iOs', axis=1)

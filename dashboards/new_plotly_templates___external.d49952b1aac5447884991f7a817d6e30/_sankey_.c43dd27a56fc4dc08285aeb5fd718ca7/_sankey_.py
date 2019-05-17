@@ -16,7 +16,7 @@ def dummy_stage(idx):
   step += list(string.ascii_uppercase)[rand]
   return step
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/k9s9mg/plot-ly-sankey'
 dummy_df = pd.DataFrame()
 dummy_df['idx'] = pd.Series(range(0, 3000))
 dummy_df['unique_id'] = dummy_df.apply(lambda x: x['idx'] % 1000, axis=1)

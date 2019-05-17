@@ -10,7 +10,7 @@ import plotly.graph_objs as go
 import math
 import sys
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/80s9zs'
 dummy_df = pd.DataFrame()
 dummy_df = pd.DataFrame()
 dummy_df['current_$'] = [1000]

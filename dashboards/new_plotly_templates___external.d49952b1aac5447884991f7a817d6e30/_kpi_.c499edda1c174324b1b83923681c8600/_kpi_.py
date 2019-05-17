@@ -10,7 +10,8 @@ import plotly.graph_objs as go
 import datetime
 import numpy as np
 
-community_post = ''
+# Generating dummy data if SQL output is not in the correct format
+community_post = 'https://community.periscopedata.com/t/q5s9zf'
 dummy_df = pd.DataFrame()
 dummy_df['ds_day'] = pd.date_range(start='12/1/2018', end='1/1/2019')
 dummy_df['row_num'] = range(1, dummy_df.shape[0] + 1)

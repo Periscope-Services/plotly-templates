@@ -9,7 +9,8 @@ import plotly.graph_objs as go
 from random import shuffle
 from datetime import datetime, timedelta
 
-community_post = ''
+# Generating dummy data in case SQL output is in the incorrect format
+community_post = 'https://community.periscopedata.com/t/18s9z8'
 current_date = datetime.now()
 
 cookies = ['Thin Mints', 'Samoas' ,'Trefoils', 'Do-si-dos', 'Tagalongs']
@@ -26,10 +27,12 @@ for i in range(0,10):
     })
 dummy_df = pd.DataFrame(vals)
 
+# HELPER FUNCTION
 def style_link(text, link, **settings):
   style = ';'.join([f'{key.replace("_","-")}:{settings[key]}' for key in settings])
   return f'<a href="{link}" style="{style}">{text}</a>'
 
+# MAIN FUNCTION
 def plot(df, annotation_msg=None):
   df.columns = [c.lower() for c in df.columns]
 

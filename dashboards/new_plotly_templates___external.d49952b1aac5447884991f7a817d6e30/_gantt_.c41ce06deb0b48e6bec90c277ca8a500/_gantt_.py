@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.plotly as py
 import plotly.figure_factory as ff
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/63s966'
 dummy_df = pd.DataFrame()
 dummy_df['task'] = ['Task 1', 'Task 2', 'Task 3']
 dummy_df['start'] = ['2019-02-07', '2018-12-24', '2018-11-09']

@@ -15,7 +15,7 @@ from scipy.special import inv_boxcox
 from datetime import date
 import numpy as np
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/m2sybn/visualizing-forecasting-data-prophet-in-plot-ly-python'
 dummy_df = pd.DataFrame()
 dummy_df['ds_day'] = pd.date_range(start='1/1/2018', end='1/1/2019')
 dummy_df['row_num'] = range(1, dummy_df.shape[0] + 1)

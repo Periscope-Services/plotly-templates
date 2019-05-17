@@ -8,7 +8,7 @@ import pandas as pd
 import plotly.plotly as py
 from plotly import graph_objs as go
 
-community_post = ''
+community_post = 'https://community.periscopedata.com/t/x1s96x'
 dummy_df = pd.DataFrame()
 dummy_df['PHASE'] = ['Lead', 'Signup', 'Purchase']
 dummy_df['VALUE'] = ['1000', '200', '50']

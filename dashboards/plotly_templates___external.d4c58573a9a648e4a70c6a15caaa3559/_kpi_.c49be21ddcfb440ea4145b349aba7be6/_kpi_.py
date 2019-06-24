@@ -76,7 +76,7 @@ def number_overlay(text):
   axis_setting = dict(range=[-1,1], showline=False, ticks='', showticklabels=False, showgrid=False, zeroline=False, fixedrange=True)
   annotation = dict(x=0, y=0, ax=0, ay=0, text=text)
   margin = dict(t=60)
-  layout = go.Layout(xaxis=axis_setting,yaxis=axis_setting,annotations=[annotation],margin=margin,)
+  layout = go.Layout(font=dict(color='#000000'),xaxis=axis_setting,yaxis=axis_setting,annotations=[annotation],margin=margin,)
   fig=go.Figure(data=[], layout=layout)
   periscope.plotly(fig, config={'displayModeBar':False})
 

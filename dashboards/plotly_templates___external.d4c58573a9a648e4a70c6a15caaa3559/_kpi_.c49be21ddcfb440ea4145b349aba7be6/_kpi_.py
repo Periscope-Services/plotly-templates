@@ -128,7 +128,10 @@ else:
   current_val = current[y_col].iloc[0]
   percentage_change = current[pct_col].iloc[0]
   indicator = '▲' if percentage_change >= 0 else '▼'
-  kpi_change = indicator + ' ' + percent(percentage_change) + ' since last ' + agg
+  last = 'last ' + agg
+  if agg == 'day':
+    last = 'yesterday'
+  kpi_change = indicator + ' ' + percent(percentage_change) + ' since ' + last
   color = gradient(percentage_change, [-.25, .25], ['#ff0000', '#00be11'])
   
   text = (

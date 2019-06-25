@@ -137,5 +137,5 @@ else:
 
 fig = dict(data=data, layout=layout)
 
-# Use Periscope to visualize a dataframe by passing the data to periscope.output()
+# Use Periscope to visualize a dataframe by passing the data to periscope.plotly()
 periscope.plotly(fig)

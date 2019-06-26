@@ -1,4 +1,4 @@
-# PERISCOPE SANKEY TEMPLATE
+# PERISCOPE SANKEY DIAGRAM TEMPLATE
 # SQL output should have 3 columns:
 #    1) unique_id: the unique identifier for that entity
 #    2) stage_name: the name of the stage in the sankey

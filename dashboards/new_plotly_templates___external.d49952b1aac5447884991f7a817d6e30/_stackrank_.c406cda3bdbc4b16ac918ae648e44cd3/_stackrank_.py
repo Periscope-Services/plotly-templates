@@ -1,4 +1,4 @@
-# PERISCOPE STACKRANK TEMPLATE
+# PERISCOPE STACK RANK CHART TEMPLATE
 # SQL output should have 3 columns:
 #    1) date: the date of the ranking
 #    2) entity: the name of the thing being ranked

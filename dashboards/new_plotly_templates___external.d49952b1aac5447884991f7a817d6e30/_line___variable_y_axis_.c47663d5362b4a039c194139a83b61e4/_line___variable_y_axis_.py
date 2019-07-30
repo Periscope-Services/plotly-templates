@@ -1,4 +1,4 @@
-# PERISCOPE VARIBALE Y AXIS CHART TEMPLATE
+# PERISCOPE VARIABLE Y AXIS CHART TEMPLATE
 # SQL output should have these columns:
 #    x value prefixed with 'x'
 #    y value(s) prefixed with 'y' -- if $ or %, prefix with 'y$' or 'y%'

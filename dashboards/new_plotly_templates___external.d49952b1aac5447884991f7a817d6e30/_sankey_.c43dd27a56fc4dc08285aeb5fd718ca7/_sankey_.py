@@ -51,6 +51,8 @@ def rgb_from_hex(hex):
 # e.g. some items go from stage A -> B, some go from B -> A. this breaks the diagram
 def is_circular(df_agg, row):
   circular_reference = df_agg.query(f'prior_stage_index == {row["stage_index"]} & stage_index == {row["prior_stage_index"]}')
+  if row["stage_index"] == row["prior_stage_index"]:
+    return True
   if circular_reference.size == 0:
     return False
   elif circular_reference['count'].iloc[0] > row['count']:

@@ -22,4 +22,4 @@ layout = go.Layout(
   }
 )
 fig = go.Figure(data=data, layout=layout)
-periscope.plotly(fig)
+periscope.plotly(fig, config={'scrollZoom': True})

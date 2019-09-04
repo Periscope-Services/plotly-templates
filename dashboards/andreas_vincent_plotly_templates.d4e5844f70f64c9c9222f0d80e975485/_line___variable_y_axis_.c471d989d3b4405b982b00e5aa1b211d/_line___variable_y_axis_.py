@@ -67,7 +67,7 @@ for idx, y_col in enumerate(y_columns):
   
   # if no series -- create the traces for each y value and only display the first one
   if not has_series:
-    trace = go.Scatter(
+    trace = go.Histogram(
 			x=df[x_column],
       y=df[y_col],
       name=column_name(y_col),
@@ -80,7 +80,7 @@ for idx, y_col in enumerate(y_columns):
     for idx_series, series in unique_series.iterrows():
       query = ' & '.join(f'{col} == "{series[{col}].iloc[0]}"' for col in series_columns)
       df_series = df.query(query)
-      trace = go.Scatter(
+      trace = go.Histogram(
         x=df_series[x_column],
         y=df_series[y_col],
         name=f'{", ".join([series[{col}].iloc[0] for col in series_columns])}',

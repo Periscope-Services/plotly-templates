@@ -1,0 +1,5 @@
+Database Name: example_database
+Settings:
+  Materialize View: false
+  Metadata:
+    Owner: rwaters@periscopedata.com

@@ -4,7 +4,7 @@ database_name: example_database
 display_name: '[GROUPED BAR] [VARIABLE Y AXIS]'
 encrypted_definition: KoAVYtLjJT9b6HmLF56mF++zXYBmQULXP2ect7xCeGJlglRELQflouOraeHHun7ViDhOrGaYiYSjahW/oQL/JmWwzv+oBspcFdY12fJ6TprlTqlN1dDAyZ0ozDVZQkM0aQMZlaTe7RRuxJjHCWPXaTSqcCoc/tUjluRc2bwjNsgFDhQf5zfhtVw/dZ86WSAX
 position:
-  left: 40
+  left: 41
   top: 3
 size:
   height: 12

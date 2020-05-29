@@ -3,7 +3,7 @@ with
     select
       id
     from
-      periscope_views.users
+      users
     where
       source is not null
       and platform is not null
@@ -15,7 +15,7 @@ select
   , 1 as sort
 from
   u
-  inner join periscope_views.users on
+  inner join users on
     u.id = users.id
 union all
 select
@@ -24,7 +24,7 @@ select
   , 2
 from
   u
-  inner join periscope_views.users on
+  inner join users on
     u.id = users.id
 union all
 select

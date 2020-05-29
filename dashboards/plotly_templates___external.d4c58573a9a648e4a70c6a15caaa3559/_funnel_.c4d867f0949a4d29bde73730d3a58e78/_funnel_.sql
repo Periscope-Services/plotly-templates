@@ -4,19 +4,19 @@ with
       'Signups' as phase
       , count(1) as value
     from
-      periscope_views.users
+      users
     union all
     select
       'Plays' as phase
       , count(distinct user_id) as value
     from
-      periscope_views.gameplays
+      gameplays
     union all
     select
       'Purchases' as phase
       , count(distinct user_id) as value
     from
-      periscope_views.purchases
+      purchases
   )
 select
   *

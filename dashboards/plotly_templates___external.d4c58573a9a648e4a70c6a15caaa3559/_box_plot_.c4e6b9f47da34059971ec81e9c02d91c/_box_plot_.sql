@@ -3,7 +3,7 @@ select
   , platform as s_platform
   , count(1) as y_purchases
 from
-  periscope_views.purchases
+  purchases
 group by
   1
   , 2

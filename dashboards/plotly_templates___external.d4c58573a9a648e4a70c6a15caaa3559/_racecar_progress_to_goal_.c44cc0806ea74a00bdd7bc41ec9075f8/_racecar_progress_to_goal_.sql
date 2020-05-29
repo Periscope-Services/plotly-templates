@@ -3,7 +3,7 @@ select
   , sum(price) as "current_$"
   , sum(price) * 1.5 as "goal_$"
 from
-  periscope_views.purchases
+  purchases
 where
   [created_at=7days]
 group by

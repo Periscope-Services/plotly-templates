@@ -21,7 +21,7 @@ with
       platform
       , sum(price) as revenue
     from
-      periscope_views.purchases
+      purchases
     where
     
 -- Apply Custom filters. Create filters on the Dashboard first, then call them in the query with syntax [column=filter_name] as seen below. https://doc.periscopedata.com/article/custom-filters

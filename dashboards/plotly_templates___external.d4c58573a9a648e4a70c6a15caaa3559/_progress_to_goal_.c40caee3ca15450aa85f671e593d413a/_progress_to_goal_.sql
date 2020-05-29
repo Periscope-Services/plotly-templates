@@ -28,13 +28,13 @@ with
 
 -- See this doc to learn how to add a filter to the dashboard: https://doc.periscopedata.com/article/add-remove-filters
       [purchases.platform=Device]
-      and [purchases.created_at:month] = [getdate():month]
+--       and [purchases.created_at:month] = [getdate():month]
     group by
       1
   )
 select
     sum(revenue) as "current_$"
-  , sum(goal) as "goal_$"
+  , sum(revenue) * 1.29 as "goal_$"
 from
   mtd_sales
   join goals on

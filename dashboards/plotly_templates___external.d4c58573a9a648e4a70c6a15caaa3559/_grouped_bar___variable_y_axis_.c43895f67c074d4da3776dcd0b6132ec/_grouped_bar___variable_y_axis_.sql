@@ -12,7 +12,7 @@ with
       , count(1) as num_purchases
       , round(sum(price), 0) as sum_purchases
     from
-      periscope_views.purchases
+      purchases
     group by
       1
       , 2
@@ -23,7 +23,7 @@ with
       , platform
       , count(1) as num_gameplays
     from
-      periscope_views.gameplays
+      gameplays
     group by
       1
       , 2

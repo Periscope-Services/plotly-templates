@@ -1,0 +1,5 @@
+dashboard_preferences:
+  settings:
+    owner: pamela.pettit@sisense.com
+disable_filters: true
+display_name: ""
